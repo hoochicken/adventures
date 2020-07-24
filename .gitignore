@@ -1,0 +1,4 @@
+.idea
+.adv-mysql
+adv-client/node_modules
+adv-server/vendor

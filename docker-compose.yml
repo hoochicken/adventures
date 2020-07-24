@@ -1,0 +1,42 @@
+version: '2'
+services:
+  herodb:
+    image: mysql:latest
+    volumes:
+      - ./dump:/docker-entrypoint-initdb.d
+      - ./.adv-mysql/databasedata:/var/lib/mysql
+    restart: always
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    container_name: hero_mysql
+    environment:
+      MYSQL_DATABASE: herodb
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: hero
+      MYSQL_PASSWORD: hero
+    networks:
+      - adventures
+  php:
+    build: .
+    volumes:
+      - ".:/var/www/html"
+    networks:
+      - adventures
+  phpmyadmin:
+    depends_on:
+      - herodb
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8081:80'
+    environment:
+      PMA_HOST: hero_mysql
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - adventures
+volumes:
+  databasedata:
+networks:
+  adventures:
