@@ -13,17 +13,15 @@ class HeroController extends ApiController
 {
 
     /**
-     * @Route("/heros", methods="GET")
      * @param HeroRepository $heroRepository
      * @return JsonResponse
      */
-    public function index(HeroRepository $heroRepository)
+    public function index(HeroRepository $heroRepository): JsonResponse
     {
         $heros = $heroRepository->transformAll();
         return $this->respond($heros);
     }
     /**
-     * @Route("/heros", methods="POST")
      * @param Request $request
      * @param HeroRepository $heroRepository
      * @param EntityManagerInterface $em
@@ -54,7 +52,6 @@ class HeroController extends ApiController
     }
 
     /**
-     * @Route("/hero/decrease", methods="GET")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @param HeroRepository $heroRepository
