@@ -27,7 +27,7 @@ class HeroController extends ApiController
      * @param EntityManagerInterface $em
      * @return Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function create(Request $request, HeroRepository $heroRepository, EntityManagerInterface $em)
+    public function create(Request $request, HeroRepository $heroRepository, EntityManagerInterface $em): JsonResponse
     {
         $request = $this->transformJsonBody($request);
 
@@ -57,7 +57,7 @@ class HeroController extends ApiController
      * @param HeroRepository $heroRepository
      * @return Symfony\Component\HttpFoundation\JsonResponse|JsonResponse
      */
-    public function decrease(Request $request, EntityManagerInterface $em, HeroRepository $heroRepository)
+    public function decrease(Request $request, EntityManagerInterface $em, HeroRepository $heroRepository): JsonResponse
     {
         $id = $request->request->get('id');
         $hero = $heroRepository->find($id);
