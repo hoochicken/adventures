@@ -31,12 +31,12 @@ class Hero
      */
     private $le_current;
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -47,7 +47,7 @@ class Hero
         return $this;
     }
 
-    public function getLe(): ?int
+    public function getLe(): int
     {
         return $this->le;
     }
@@ -58,7 +58,7 @@ class Hero
         return $this;
     }
 
-    public function getLeCurrent(): ?int
+    public function getLeCurrent(): int
     {
         return $this->le_current;
     }
