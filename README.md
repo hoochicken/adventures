@@ -6,7 +6,9 @@
 | --- | --- | --- |
 yarn | <https://classic.yarnpkg.com/en/docs/install/#windows-stable> |
 npm | <https://nodejs.org/en/download/> | 
-php | <https://windows.php.net/download/> | php.ini mit aktiviertem Modul extension=pdo_mysql
+php | <https://windows.php.net/download/> | php.ini mit folgenden aktivierten Modulen:
+   * extension=pdo_mysql
+   * extension=openssl
 composer | <https://getcomposer.org/download/> | 
 
 ## kick-starting the project
