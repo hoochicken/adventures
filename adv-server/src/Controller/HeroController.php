@@ -6,8 +6,7 @@ use App\Entity\Hero;
 use App\Repository\HeroRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Response;
 
 class HeroController extends ApiController
 {
@@ -25,7 +24,7 @@ class HeroController extends ApiController
      * @param Request $request
      * @param HeroRepository $heroRepository
      * @param EntityManagerInterface $em
-     * @return Symfony\Component\HttpFoundation\JsonResponse
+     * @return JsonResponse
      */
     public function create(Request $request, HeroRepository $heroRepository, EntityManagerInterface $em): JsonResponse
     {
@@ -55,15 +54,16 @@ class HeroController extends ApiController
      * @param Request $request
      * @param EntityManagerInterface $em
      * @param HeroRepository $heroRepository
-     * @return Symfony\Component\HttpFoundation\JsonResponse|JsonResponse
+     * @return JsonResponse
      */
-    public function decrease(Request $request, EntityManagerInterface $em, HeroRepository $heroRepository): JsonResponse
+    public function decrease(Request $request, EntityManagerInterface $em, HeroRepository $heroRepository)
     {
-        $id = $request->request->get('id');
+        $request = Request::createFromGlobals();
+        $id = (int) $request->request->get('id');
         $hero = $heroRepository->find($id);
 
-        if (! $hero) {
-            return $this->respondNotFound();
+        if (!$hero) {
+            return $this->respondNotFound(sprintf('The hero entity witrh the id %s could not be found', $id));
         }
 
         $hero->setLeCurrent($hero->getLeCurrent() - 1);

@@ -24,9 +24,6 @@
             </tbody>
         </table>
         <a class="btn btn-primary">Add Hero</a>
-        <pre>{{ currentId }}</pre>
-        <pre>{{ response }}</pre>
-        <pre>{{ heros }}</pre>
 
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             With Bootstrap!
@@ -43,7 +40,7 @@
       return {
         heros: {},
         currentId: 0,
-          response:{}
+          response: {}
       }
     },
     async mounted () {
@@ -52,8 +49,10 @@
     methods: {
       async decrease(id) {
           this.currentId = id;
-          await this.axios.get('/hero/decrease', [id]);
-          // this.get();
+          var params = new URLSearchParams();
+          params.append('id', id);
+          this.response = await this.axios.post('/hero/decrease', params);
+          this.get();
       },
       async get() {
           const response = await this.axios.get('/heros');

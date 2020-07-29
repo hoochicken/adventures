@@ -11,7 +11,10 @@ heros:
     path: /heros
     controller: App\Controller\HeroController::index
 
-test456sasd:
-  path: /test456
-  controller: App\Controller\HeroController::index
-  methods: GET|HEAD
+decrease:
+  path: /hero/decrease
+  controller: App\Controller\HeroController::decrease
+  # methods: GET|PATCH|POST|HEAD
+  schemes: [http]
+
+
