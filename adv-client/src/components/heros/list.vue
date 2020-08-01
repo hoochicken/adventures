@@ -23,7 +23,7 @@
             </template>
             </tbody>
         </table>
-        <a class="btn btn-primary">Add Hero</a>
+        <a class="btn btn-primary" @click="$router.push('/hero/add')">Add Hero</a>
 
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             With Bootstrap!
@@ -36,6 +36,7 @@
 
 <script>
   export default {
+    name: 'HerosList',
     data() {
       return {
         heros: {},
