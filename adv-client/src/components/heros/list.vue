@@ -36,7 +36,7 @@
 
 <script>
   export default {
-    name: 'HerosList',
+    name: 'hero-list',
     data() {
       return {
         heros: {},
