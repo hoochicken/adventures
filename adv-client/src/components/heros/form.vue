@@ -10,6 +10,8 @@
                 <input class="form-control" v-bind="pic"/>
                 <input class="form-control" v-bind="le"/>
                 <input class="form-control" v-bind="le_current"/>
+                <input class="form-control" v-bind="ae"/>
+                <input class="form-control" v-bind="ae_current"/>
                 <input class="form-control" v-bind="inventory"/>
                 <input class="form-control" v-bind="weapon"/>
                 <input class="form-control" v-bind="at"/>
