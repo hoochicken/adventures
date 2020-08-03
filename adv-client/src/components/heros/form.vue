@@ -1,6 +1,8 @@
 <template>
     <div>
         <form>
+
+            {{ heroclass }}
             <div class="form-group row form-horizontal">
                 <label for="id" class="col-sm-2 col-form-label">ID</label><input id="id" class="form-control col-sm-10" v-model="item.id"/>
             </div>
@@ -118,6 +120,5 @@
 </script>
 
 <style scoped>
-    label::first-letter {
-        text-transform: uppercase;}
+    label::first-letter { text-transform: uppercase; }
 </style>
