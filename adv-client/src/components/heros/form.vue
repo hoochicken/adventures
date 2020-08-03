@@ -4,41 +4,41 @@
             <div class="form-group row form-horizontal">
                 <label for="id" class="col-sm-2 col-form-label">ID</label><input id="id" class="form-control col-sm-10" v-model="item.id"/>
             </div>
-             <div class="form-group row form-horizontal">
+            <div class="form-group row form-horizontal">
                 <label for="name" class="col-sm-2 col-form-label">name</label><input id="name" class="form-control col-sm-10" v-model="item.name"/>
             </div>
-             <div class="form-group row form-horizontal">
+            <div class="form-group row form-horizontal">
                 <label for="class" class="col-sm-2 col-form-label">class</label><!--input id="class" class="form-control col-sm-10" v-model="item.class"/-->
                  <select id="class" class="form-control col-sm-10" required v-model="item.class">
                      <option value="0"> - please choose - </option>
                      <option v-for="hcls in heroclass" :key="hcls.id" :value="hcls.id">{{ hcls.label }} ({{ hcls.id }})</option>
                  </select>
             </div>
-             <div class="form-group row form-horizontal">
+            <div class="form-group row form-horizontal">
                  <label for="description" class="col-sm-2 col-form-label">description</label><textarea id="description" class="form-control col-sm-10" v-model="item.description"></textarea>
             </div>
-             <div class="form-group row form-horizontal">
+            <div class="form-group row form-horizontal">
                 <label for="pic" class="col-sm-2 col-form-label">pic</label><input id="pic" class="form-control col-sm-10" v-model="item.pic"/>
             </div>
-             <div class="form-group row form-horizontal">
+            <div class="form-group row form-horizontal">
                 <label for="le" class="col-sm-2 col-form-label">le</label><input id="le" type="number" class="form-control col-sm-5" v-model.number="item.le"/><input id="le_current" type="number" class="form-control col-sm-5" v-model.number="item.le_current"/>
             </div>
-             <div class="form-group row form-horizontal">
+            <div class="form-group row form-horizontal">
                 <label for="ae" class="col-sm-2 col-form-label">ae</label><input  id="ae" type="number" class="form-control col-sm-5" v-model.number="item.ae"/><input id="ae_current" type="number" class="form-control col-sm-5" v-model.number="item.ae_current"/>
             </div>
-             <div class="form-group row form-horizontal">
+            <div class="form-group row form-horizontal">
                 <label for="inventory" class="col-sm-2 col-form-label">inventory</label><input id="inventory" class="form-control col-sm-10" v-model="item.inventory"/>
             </div>
-             <div class="form-group row form-horizontal">
+            <div class="form-group row form-horizontal">
                 <label for="weapon" class="col-sm-2 col-form-label">weapon</label><input id="weapon" class="form-control col-sm-10" v-model="item.weapon"/>
             </div>
-             <div class="form-group row form-horizontal">
+            <div class="form-group row form-horizontal">
                 <label for="at" class="col-sm-2 col-form-label">at</label><input id="at" type="number" class="form-control col-sm-10" v-model.number="item.at"/>
             </div>
-             <div class="form-group row form-horizontal">
+            <div class="form-group row form-horizontal">
                 <label for="pa" class="col-sm-2 col-form-label">pa</label><input id="pa" type="number" class="form-control col-sm-10" v-model.number="item.pa"/>
             </div>
-             <div class="form-group row form-horizontal">
+            <div class="form-group row form-horizontal">
                  <label for="attributes" class="col-sm-2 col-form-label">attributes</label><textarea id="attributes" class="form-control col-sm-10" v-model="item.attributes"></textarea>
             </div>
             <div class="form-group row form-horizontal">
