@@ -23,7 +23,7 @@
             </template>
             </tbody>
         </table>
-        <a class="btn btn-primary" @click="$router.push('/hero/add')">Add Hero</a>
+        <a class="btn btn-primary" @click="$router.push('/hero/create')">Create New Hero</a>
 
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             With Bootstrap!
