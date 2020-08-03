@@ -51,7 +51,7 @@
                 </ul>
             </div>
             <div class="d-flex align-content-end">
-                <button class="btn btn-primary" @click="createHero">Create</button>
+                <button class="btn btn-primary" @click="save">Create</button>
             </div>
         </form>
     </div>
@@ -72,7 +72,7 @@
             this.heroclass = classResponse.data;
         },
         methods: {
-            createHero: function(e) {
+            save: function(e) {
                 e.preventDefault();
                 if (!this.checkForm()) {
                     return false;
