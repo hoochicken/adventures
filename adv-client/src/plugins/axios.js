@@ -7,6 +7,7 @@ import axios from "axios";
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 let config = {
   // baseURL: process.env.baseURL || process.env.apiUrl || ""
@@ -15,6 +16,7 @@ let config = {
 };
 
 const _axios = axios.create(config);
+_axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 _axios.interceptors.request.use(
   function(config) {
