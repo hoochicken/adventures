@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Add</h1>
-        <hero-form :item=item></hero-form>
+        <hero-form :item=item @save="createHero"></hero-form>
     </div>
 </template>
 
@@ -30,6 +30,12 @@
                     attributes: '{}',
                     state: 1
                 }
+            }
+        },
+        methods: {
+            async createHero() {
+                this.axios.post('/hero/create', this.item);
+                // this.$router.push('heros-update')
             }
         }
     }
