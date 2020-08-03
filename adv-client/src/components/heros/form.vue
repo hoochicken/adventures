@@ -47,7 +47,16 @@
             <div class="form-group row form-horizontal">
                 <label for="state" class="col-sm-2 col-form-label">state</label><input id="state" type="number" class="form-control col-sm-10" v-model.number="item.state"/>
             </div>
+            <div class="d-flex align-content-end">
+                <button class="btn btn-primary" @click="createHero">Create</button>
+            </div>
         </form>
+        <div v-if="0 < errors.length" class="alert alert-danger">
+            <p>Folgende Fehler sind aufgefallen:</p>
+            <ul>
+                <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -74,12 +83,36 @@
                     attributes: '{}',
                     state: 1
                 },
-                heroclass: {}
+                heroclass: {},
+                errors: []
             }
         },
         async mounted () {
             let classResponse = await this.axios.post('/hero/getClass', {});
             this.heroclass = classResponse.data;
+        },
+        methods: {
+            createHero: function(e) {
+                if (!this.checkForm(e)) {
+                    return false;
+                }
+            },
+            checkForm: function (e) {
+                this.errors = [];
+
+                if (!this.item.name) {
+                    this.errors.push("Name required.");
+                }
+                if (this.item.le < 1) {
+                    this.errors.push('Lebensenergie muss groesser 0 sein.');
+                }
+
+                if (!this.errors.length) {
+                    return true;
+                }
+
+                e.preventDefault();
+            },
         }
     }
 </script>
