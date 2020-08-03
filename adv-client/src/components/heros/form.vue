@@ -121,4 +121,5 @@
 
 <style scoped>
     label::first-letter { text-transform: uppercase; }
+    .alert {text-align:left;}
 </style>
