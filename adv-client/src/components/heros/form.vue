@@ -1,7 +1,6 @@
 <template>
     <div>
         <form>
-
             {{ heroclass }}
             <div class="form-group row form-horizontal">
                 <label for="id" class="col-sm-2 col-form-label">ID</label><input id="id" class="form-control col-sm-10" v-model="item.id"/>
@@ -12,7 +11,7 @@
              <div class="form-group row form-horizontal">
                 <label for="class" class="col-sm-2 col-form-label">class</label><!--input id="class" class="form-control col-sm-10" v-model="item.class"/-->
                  <select id="class" class="form-control col-sm-10" required v-model="item.class">
-                     <option value=""> - please choose - </option>
+                     <option value="0"> - please choose - </option>
                      <option v-for="hcls in heroclass" :key="hcls.id" :value="hcls.id">{{ hcls.label }} ({{ hcls.id }})</option>
                  </select>
             </div>
