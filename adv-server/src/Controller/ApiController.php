@@ -123,6 +123,7 @@ class ApiController
      */
     public function transformJsonBody(Request $request) {
         $data = json_decode($request->getContent(), true);
+        return $data;
         if (json_last_error() !== JSON_ERROR_NONE) {
             return false;
         }

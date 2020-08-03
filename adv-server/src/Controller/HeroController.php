@@ -29,26 +29,27 @@ class HeroController extends ApiController
      */
     public function create(Request $request, HeroRepository $heroRepository, EntityManagerInterface $em): JsonResponse
     {
-        $request = $this->transformJsonBody($request);
-
-        if (! $request) {
-            return $this->respondValidationError('Please provide a valid request!');
-        }
+        $data = json_decode($request->getContent(), true);
+        $request->request->replace(is_array($data) ? $data : array());
 
         // validate the title
         if (! $request->get('name')) {
-            return $this->respondValidationError('Please provide a title!');
+            return $this->respondValidationError('Please provide a name!');
         }
 
         // persist the new hero
         $hero = new Hero;
-        $hero->setName($request->get('respondValidationError'));
-        $hero->setLe(0);
-        $hero->setLeCurrent(0);
-        $em->persist($hero);
-        $em->flush();
+        $hero->setName($request->get('name'));
+        $hero->setDescription($request->get('name'));
+        $hero->setLe($request->get('le'));
+        $hero->setLeCurrent($request->get('le'));
+        $hero->setAe($request->get('ae'));
+        $hero->setAeCurrent($request->get('ae'));
+        // $em->persist($hero);
+        // $em->flush();
 
-        return $this->respondCreated($heroRepository->transform($hero));
+        return $this->respondCreated('TEST');
+        // return $this->respondCreated($heroRepository->transform($hero));
     }
 
     /**

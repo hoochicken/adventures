@@ -8,8 +8,12 @@ index:
     controller: App\Controller\HeroController::index
 
 heros:
-    path: /heros
+    path: /hero/list
     controller: App\Controller\HeroController::index
+
+heroCreate:
+    path: /hero/create
+    controller: App\Controller\HeroController::create
 
 decrease:
   path: /hero/decrease

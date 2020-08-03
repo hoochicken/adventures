@@ -51,7 +51,8 @@
                 </ul>
             </div>
             <div class="d-flex align-content-end">
-                <button class="btn btn-primary" @click="save">Create</button>
+                <button v-if="item.id > 0" class="btn btn-primary" @click="saveItem">Update</button>
+                <button v-else class="btn btn-primary" @click="saveItem">Create</button>
             </div>
         </form>
     </div>
@@ -60,7 +61,7 @@
 <script>
     export default {
         name: "hero-form",
-        props: {item: Object},
+        props: {item: {}},
         data () {
             return {
                 heroclass: {},
@@ -72,7 +73,7 @@
             this.heroclass = classResponse.data;
         },
         methods: {
-            save: function(e) {
+            saveItem: function(e) {
                 e.preventDefault();
                 if (!this.checkForm()) {
                     return false;

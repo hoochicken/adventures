@@ -3,8 +3,8 @@ import VueRouter from 'vue-router'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Index from './App.vue'
-import HerosList from './components/heros/list.vue'
-import HerosCreate from './components/heros/create.vue'
+import HeroList from './components/hero/list.vue'
+import HeroCreate from './components/hero/create.vue'
 import axios from "./plugins/axios";
 
 Vue.config.productionTip = false;
@@ -12,8 +12,8 @@ Vue.use(VueRouter, axios);
 Vue.axios.defaults.baseURL = `http://${process.env.VUE_APP_ENV_HOST}:${process.env.VUE_APP_ENV_PORT}`;
 
 const routes = [
-  { path: '/heros/list', component: HerosList },
-  { path: '/hero/create', component: HerosCreate },
+  { path: '/hero/list', component: HeroList },
+  { path: '/hero/create', component: HeroCreate },
   { path: '/', component: Index }
 ];
 

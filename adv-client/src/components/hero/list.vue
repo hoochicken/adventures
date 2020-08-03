@@ -56,7 +56,7 @@
           this.get();
       },
       async get() {
-          const response = await this.axios.get('/heros');
+          const response = await this.axios.get('/hero/list');
           this.heros = response.data
       }
     }
