@@ -17,4 +17,10 @@ decrease:
   # methods: GET|PATCH|POST|HEAD
   schemes: [http]
 
+getHeroClass:
+  path: /hero/getClass
+  controller: App\Controller\HeroController::getClass
+  # methods: GET|PATCH|POST|HEAD
+  schemes: [http]
+
 

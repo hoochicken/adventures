@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Repository\HeroClassRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Hero;
 use App\Repository\HeroRepository;
@@ -73,5 +74,17 @@ class HeroController extends ApiController
         return $this->respond([
             'le_current' => $hero->getLeCurrent()
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @param HeroClassRepository $heroClassRepository
+     * @return JsonResponse
+     */
+    public function getClass(Request $request, EntityManagerInterface $em, HeroClassRepository $heroClassRepository)
+    {
+        $classes = $heroClassRepository->transformAll();
+        return $this->respond($classes);
     }
 }
