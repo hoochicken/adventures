@@ -1,7 +1,7 @@
 <template>
     <div>
         <form>
-            <div class="form-group row form-horizontal">
+            <div v-if="item.id > 0" class="form-group row form-horizontal">
                 <label for="id" class="col-sm-2 col-form-label">ID</label><input id="id" class="form-control col-sm-10" v-model="item.id"/>
             </div>
             <div class="form-group row form-horizontal">
