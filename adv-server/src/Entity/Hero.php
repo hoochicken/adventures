@@ -22,6 +22,21 @@ class Hero
     private $name;
 
     /**
+     * @ORM\Column(type="integer", length=10)
+     */
+    private $class;
+
+    /**
+     * @ORM\Column(type="string", length=1023)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $pic;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $le;
@@ -30,6 +45,46 @@ class Hero
      * @ORM\Column(type="integer")
      */
     private $le_current;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $ae;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $ae_current;
+
+    /**
+     * @ORM\Column(type="string", length=1023)
+     */
+    private $inventory;
+
+    /**
+     * @ORM\Column(type="integer", length=10)
+     */
+    private $weapon;
+
+    /**
+     * @ORM\Column(type="integer", length=10)
+     */
+    private $at;
+
+    /**
+     * @ORM\Column(type="integer", length=10)
+     */
+    private $pa;
+
+    /**
+     * @ORM\Column(type="string", length=1023)
+     */
+    private $attributes;
+
+    /**
+     * @ORM\Column(type="integer", length=10)
+     */
+    private $state;
 
     public function getId(): int
     {
@@ -41,9 +96,42 @@ class Hero
         return $this->name;
     }
 
-    public function setName(string $title): self
+    public function setName(string $value): self
     {
-        $this->name = $title;
+        $this->name = $value;
+        return $this;
+    }
+
+    public function getClass(): string
+    {
+        return $this->name;
+    }
+
+    public function setClass(string $value): self
+    {
+        $this->class = $value;
+        return $this;
+    }
+
+    public function setDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getDescription(string $value): self
+    {
+        $this->description = $value;
+        return $this;
+    }
+
+    public function getPic(): string
+    {
+        return $this->pic;
+    }
+
+    public function setPic(string $value): self
+    {
+        $this->pic = $value;
         return $this;
     }
 
@@ -66,6 +154,94 @@ class Hero
     public function setLeCurrent(int $le_current): self
     {
         $this->le_current = $le_current;
+        return $this;
+    }
+
+    public function getAe(): int
+    {
+        return $this->ae;
+    }
+
+    public function setAe(int $le): self
+    {
+        $this->le = $le;
+        return $this;
+    }
+
+    public function getAeCurrent(): int
+    {
+        return $this->le_current;
+    }
+
+    public function setAeCurrent(int $le_current): self
+    {
+        $this->le_current = $le_current;
+        return $this;
+    }
+
+    public function getInventory(): string
+    {
+        return $this->inventory;
+    }
+
+    public function setInventory(string $value): self
+    {
+        $this->inventory = $value;
+        return $this;
+    }
+
+    public function getWeapon(): int
+    {
+        return $this->weapon;
+    }
+
+    public function setWeapon(int $value): self
+    {
+        $this->weapon = $value;
+        return $this;
+    }
+
+    public function getAt(): int
+    {
+        return $this->at;
+    }
+
+    public function setAt(int $value): self
+    {
+        $this->le_current = $value;
+        return $this;
+    }
+
+    public function getPa(): int
+    {
+        return $this->pa;
+    }
+
+    public function setPa(int $value): self
+    {
+        $this->pa = $value;
+        return $this;
+    }
+
+    public function getAttributes(): string
+    {
+        return $this->attributes;
+    }
+
+    public function setAttributes(string $value): self
+    {
+        $this->attributes = $value;
+        return $this;
+    }
+
+    public function getState(): int
+    {
+        return $this->state;
+    }
+
+    public function setState(int $value): self
+    {
+        $this->state = $value;
         return $this;
     }
 }
