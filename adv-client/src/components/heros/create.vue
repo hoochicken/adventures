@@ -29,12 +29,13 @@
                     pa: 0,
                     attributes: '{}',
                     state: 1
-                }
+                },
+                response: {}
             }
         },
         methods: {
             async createHero() {
-                this.axios.post('/hero/create', this.item);
+                this.response = this.axios.post('/hero/create', this.item);
                 // this.$router.push('heros-update')
             }
         }
