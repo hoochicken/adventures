@@ -95,25 +95,18 @@
         },
         methods: {
             createHero: function(e) {
-                if (!this.checkForm(e)) {
+                e.preventDefault();
+                if (!this.checkForm()) {
                     return false;
                 }
             },
-            checkForm: function (e) {
+            checkForm: function () {
                 this.errors = [];
 
-                if (!this.item.name) {
-                    this.errors.push("Name required.");
-                }
-                if (this.item.le < 1) {
-                    this.errors.push('Lebensenergie muss groesser 0 sein.');
-                }
+                if (!this.item.name) this.errors.push("Name required.");
+                if (this.item.le < 1) this.errors.push('Lebensenergie muss groesser 0 sein.');
 
-                if (!this.errors.length) {
-                    return true;
-                }
-
-                e.preventDefault();
+                if (!this.errors.length) return true;
             },
         }
     }
