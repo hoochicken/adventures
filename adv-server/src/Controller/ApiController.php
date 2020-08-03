@@ -116,4 +116,20 @@ class ApiController
     {
         return $this->setStatusCode(201)->respond($data);
     }
+
+    /**
+     * @param Request $request
+     * @return bool
+     */
+    public function transformJsonBody(Request $request) {
+        $data = json_decode($request->getContent(), true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return false;
+        }
+        if ($data === null) {
+            return true;
+        }
+        $request->request->replace($data);
+        return true;
+    }
 }
