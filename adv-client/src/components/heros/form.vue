@@ -77,6 +77,7 @@
                 if (!this.checkForm()) {
                     return false;
                 }
+                this.$emit('save', this.item);
             },
             checkForm: function () {
                 this.errors = [];
