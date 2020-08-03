@@ -9,9 +9,6 @@
              <div class="form-group row form-horizontal">
                 <label for="name" class="col-sm-2 col-form-label">name</label><input id="name" class="form-control col-sm-10" v-model="item.name"/>
             </div>
-            <!--div class="form-group row form-horizontal">
-                <label for="type" class="col-sm-2 col-form-label">type</label><input id="type" class="form-control col-sm-10" v-model="item.type"/>
-            </div-->
              <div class="form-group row form-horizontal">
                 <label for="class" class="col-sm-2 col-form-label">class</label><!--input id="class" class="form-control col-sm-10" v-model="item.class"/-->
                  <select id="class" class="form-control col-sm-10" required v-model="item.class">
