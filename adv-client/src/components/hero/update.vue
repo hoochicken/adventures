@@ -2,7 +2,7 @@
     <div>
         {{ response }}
         <h1>Update</h1>
-        <hero-form :item=item @save="updateHero" @close="$router.push('/hero/list')"></hero-form>
+        <hero-form :item=item @save="updateHero" @close="$router.push('/hero/list')" @delete="deleteHero"></hero-form>
     </div>
 </template>
 
@@ -43,8 +43,12 @@
                 this.item = this.response.data;
             },
             async updateHero(item) {
-                var params = JSON.stringify(item);
+                let params = JSON.stringify(item);
                 this.response = await this.axios.post('/hero/update/' + item.id, params);
+            },
+            async deleteHero(id) {
+                this.response = await this.axios.post('/hero/delete/' + id);
+                this.$router.push('/hero/list');
             }
         }
     }

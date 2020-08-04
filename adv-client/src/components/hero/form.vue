@@ -50,10 +50,11 @@
                     <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
                 </ul>
             </div>
-            <div class="d-flex justify-content-end">
-                <button v-if="item.id > 0" class="btn btn-primary" @click="saveItem">Update</button>
-                <button v-else class="btn btn-primary" @click="saveItem">Create</button>
-                <button class="btn btn-danger" @click="$emit('close')">Close</button>
+            <div class="">
+                <button v-if="item.id > 0" class="btn btn-success float-right" @click="saveItem">Update</button>
+                <button v-else class="btn btn-success float-right" @click="saveItem">Create</button>
+                <button class="btn btn-warning float-right" @click="$emit('close')">Close</button>
+                <button v-if="item.id > 0" class="btn btn-danger float-left" @click="$emit('delete')">Delete</button>
             </div>
         </form>
     </div>
@@ -100,9 +101,4 @@
 <style scoped>
     label::first-letter { text-transform: uppercase; }
     .alert {text-align:left;}
-    .justify-content-end {
-        -webkit-box-pack: end !important;
-        -ms-flex-pack: end !important;
-        justify-content: flex-end !important;
-    }
 </style>
