@@ -1,7 +1,6 @@
 <template>
     <div>
         <h1>Update</h1>
-        {{ response }}
         <hero-form :item=item @save="updateHero"></hero-form>
     </div>
 </template>
@@ -40,13 +39,10 @@
         methods: {
             async getHero(id) {
                 this.response = await this.axios.get('/hero/get/' + id);
-                console.log(this.response);
-                // this.$router.push('heros-update')
             },
             async updateHero(item) {
                 var params = JSON.stringify(item);
                 this.response = await this.axios.post('/hero/update', params);
-                // this.$router.push('heros-update')
             }
         }
     }
