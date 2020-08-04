@@ -20,11 +20,17 @@
             <div class="form-group row form-horizontal">
                 <label for="pic" class="col-sm-2 col-form-label">pic</label><input id="pic" class="form-control col-sm-10" v-model="item.pic"/>
             </div>
-            <div class="form-group row form-horizontal">
+            <div v-if="item.id > 0" class="form-group row form-horizontal">
                 <label for="le" class="col-sm-2 col-form-label">le</label><input id="le" type="number" class="form-control col-sm-5" v-model.number="item.le"/><input id="le_current" type="number" class="form-control col-sm-5" v-model.number="item.le_current"/>
             </div>
-            <div class="form-group row form-horizontal">
-                <label for="ae" class="col-sm-2 col-form-label">ae</label><input  id="ae" type="number" class="form-control col-sm-5" v-model.number="item.ae"/><input id="ae_current" type="number" class="form-control col-sm-5" v-model.number="item.ae_current"/>
+            <div v-else class="form-group row form-horizontal">
+                <label for="le" class="col-sm-2 col-form-label">le</label><input id="le" type="number" class="form-control col-sm-10" v-model.number="item.le"/>
+            </div>
+            <div v-if="item.id > 0" class="form-group row form-horizontal">
+                <label for="ae" class="col-sm-2 col-form-label">ae</label><input id="ae" type="number" class="form-control col-sm-5" v-model.number="item.ae"/><input id="ae_current" type="number" class="form-control col-sm-5" v-model.number="item.ae_current"/>
+            </div>
+            <div v-else class="form-group row form-horizontal">
+                <label for="ae" class="col-sm-2 col-form-label">ae</label><input id="ae" type="number" class="form-control col-sm-10" v-model.number="item.ae"/>
             </div>
             <div class="form-group row form-horizontal">
                 <label for="inventory" class="col-sm-2 col-form-label">inventory</label><input id="inventory" class="form-control col-sm-10" v-model="item.inventory"/>
