@@ -23,6 +23,10 @@ heroUpdate:
     path: /hero/update/{id}
     controller: App\Controller\HeroController::update
 
+heroDelete:
+    path: /hero/delete/{id}
+    controller: App\Controller\HeroController::delete
+
 decrease:
   path: /hero/decrease
   controller: App\Controller\HeroController::decrease
