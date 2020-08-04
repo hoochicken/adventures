@@ -18,7 +18,7 @@
                     <td>{{ item.name}}</td>
                     <td>{{ item.le }}</td>
                     <td>{{ item.le_current }}</td>
-                    <td><button class="btn btn-secondary" @click="decrease(item.id)">-1</button><button class="btn btn-danger" @click="deleteHero(item.id)">Delete</button></td>
+                    <td><button class="btn btn-secondary" @click="updateHero(item.id)">Update</button><button class="btn btn-danger" @click="deleteHero(item.id)">Delete</button></td>
                 </tr>
             </template>
             </tbody>
@@ -65,6 +65,9 @@
           }
           await this.axios.post('/hero/delete/' + id);
           this.get();
+      },
+      updateHero(id) {
+          this.$router.push('/hero/update/' + id);
       }
     }
   }
