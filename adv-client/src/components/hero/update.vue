@@ -39,6 +39,7 @@
         methods: {
             async getHero(id) {
                 this.response = await this.axios.get('/hero/get/' + id);
+                this.item = this.response.data;
             },
             async updateHero(item) {
                 var params = JSON.stringify(item);
