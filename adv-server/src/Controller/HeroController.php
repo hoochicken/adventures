@@ -21,6 +21,7 @@ class HeroController extends ApiController
         $heros = $heroRepository->transformAll();
         return $this->respond($heros);
     }
+
     /**
      * @param Request $request
      * @param HeroRepository $heroRepository
@@ -57,6 +58,18 @@ class HeroController extends ApiController
 
         $em->persist($hero);
         $em->flush();
+        return $this->respondCreated($heroRepository->transform($hero));
+    }
+
+    /**
+     * @param int $id
+     * @param HeroRepository $heroRepository
+     * @param EntityManagerInterface $em
+     * @return JsonResponse
+     */
+    public function get(int $id, HeroRepository $heroRepository, EntityManagerInterface $em): JsonResponse
+    {
+        $hero = $heroRepository->find($id);
         return $this->respondCreated($heroRepository->transform($hero));
     }
 
