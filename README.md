@@ -6,10 +6,9 @@
 | --- | --- | --- |
 yarn | <https://classic.yarnpkg.com/en/docs/install/#windows-stable> |
 npm | <https://nodejs.org/en/download/> | 
-php | <https://windows.php.net/download/> | php.ini mit folgenden aktivierten Modulen:
-   * extension=pdo_mysql
-   * extension=openssl
+php | <https://windows.php.net/download/> | php.ini mit folgenden aktivierten Modulen:<br />*extension=pdo_mysql<br />*extension=openssl
 composer | <https://getcomposer.org/download/> | 
+browser | https://addons.mozilla.org/de/firefox/addon/vue-js-devtools/?src=search |
 
 ## kick-starting the project
 
