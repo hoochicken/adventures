@@ -34,22 +34,31 @@ class HeroController extends ApiController
 
         // validate the title
         if (! $request->get('name')) {
-            return $this->respondValidationError('Please provide a name!');
+            // return $this->respondValidationError('Please provide a name!');
         }
 
         // persist the new hero
         $hero = new Hero;
         $hero->setName($request->get('name'));
-        $hero->setDescription($request->get('name'));
+        $hero->setClass($request->get('class'));
+        $hero->setType($request->get('type'));
+        $hero->setDescription($request->get('description'));
+        $hero->setPic($request->get('pic'));
         $hero->setLe($request->get('le'));
         $hero->setLeCurrent($request->get('le'));
         $hero->setAe($request->get('ae'));
         $hero->setAeCurrent($request->get('ae'));
-        // $em->persist($hero);
-        // $em->flush();
+        $hero->setInventory($request->get('inventory'));
+        $hero->setWeapon($request->get('weapon'));
+        $hero->setAt($request->get('at'));
+        $hero->setPa($request->get('pa'));
+        $hero->setAttributes($request->get('attributes'));
+        $hero->setState($request->get('state'));
 
-        return $this->respondCreated('TEST');
-        // return $this->respondCreated($heroRepository->transform($hero));
+        $em->persist($hero);
+        $em->flush();
+        return $this->respondCreated($hero);
+        return $this->respondCreated($heroRepository->transform($hero));
     }
 
     /**

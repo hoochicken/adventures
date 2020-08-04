@@ -54,8 +54,20 @@ class HeroRepository extends ServiceEntityRepository
         return [
             'id'    => (int) $hero->getId(),
             'name' => (string) $hero->getName(),
+            'class' => (string) $hero->getClass(),
+            'type' => (string) $hero->getType(),
+            'description' => (string) $hero->getDescription(),
+            'pic' => (string) $hero->getPic(),
             'le' => (int) $hero->getLe(),
             'le_current' => (int) $hero->getLeCurrent(),
+            'ae' => (int) $hero->getAe(),
+            'ae_current' => (int) $hero->getAeCurrent(),
+            'inventory' => (string) $hero->getInventory(),
+            'weapon' => (int) $hero->getWeapon(),
+            'at' => (int) $hero->getAt(),
+            'pa' => (int) $hero->getPa(),
+            'attributes' => (string) $hero->getAttributes(),
+            'state' => (int) $hero->getState(),
         ];
     }
 
