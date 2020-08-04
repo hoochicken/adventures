@@ -36,6 +36,11 @@ php -S 127.0.0.1:8000 -t public
 # start dockers for mysql
 docker-compose up
 # phpmyadmin exposed to 8081, so: http://127.0.0.1:8081/
+
+# styleguidist
+cd adv-client
+npm run styleguide
+# styleguidist expostd to 6060, so: http://localhost:6060/
 ```
 
 ## endpoints

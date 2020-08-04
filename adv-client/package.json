@@ -5,13 +5,16 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "styleguide": "vue-cli-service styleguidist",
+    "styleguide:build": "vue-cli-service styleguidist:build"
   },
   "dependencies": {
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "core-js": "^3.6.5",
     "jquery": "^3.5.1",
+    "jw-vue-pagination": "^1.0.3",
     "node": "latest",
     "popper.js": "^1.16.1",
     "process": "^0.11.10",
@@ -28,6 +31,8 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "vue-cli-plugin-axios": "0.0.4",
+    "vue-cli-plugin-styleguidist": "^4.29.1",
+    "vue-styleguidist": "^4.29.1",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
