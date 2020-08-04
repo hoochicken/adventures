@@ -18,12 +18,12 @@
                     <td>{{ item.name}}</td>
                     <td>{{ item.le }}</td>
                     <td>{{ item.le_current }}</td>
-                    <td><button class="btn btn-secondary" @click="updateHero(item.id)">Update</button><button class="btn btn-danger" @click="deleteHero(item.id)">Delete</button></td>
+                    <td><button class="btn btn-success text-white update" @click="updateHero(item.id)">Update</button><button class="btn btn-danger delete" @click="deleteHero(item.id)">Delete</button></td>
                 </tr>
             </template>
             </tbody>
         </table>
-        <a class="btn btn-primary" @click="$router.push('/hero/create')">Create New Hero</a>
+        <button class="btn btn-success " @click="$router.push('/hero/create')">Create New Hero</button>
 
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             With Bootstrap!
@@ -72,3 +72,7 @@
     }
   }
 </script>
+
+<style scoped>
+    .delete {margin-left:15px;}
+</style>
