@@ -34,7 +34,7 @@ class HeroController extends ApiController
 
         // validate the title
         if (! $request->get('name')) {
-            // return $this->respondValidationError('Please provide a name!');
+            return $this->respondValidationError('Please provide a name!');
         }
 
         // persist the new hero
@@ -57,7 +57,6 @@ class HeroController extends ApiController
 
         $em->persist($hero);
         $em->flush();
-        return $this->respondCreated($hero);
         return $this->respondCreated($heroRepository->transform($hero));
     }
 
