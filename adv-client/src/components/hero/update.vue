@@ -47,7 +47,10 @@
                 this.response = await this.axios.post('/hero/update/' + item.id, params);
             },
             async deleteHero(id) {
-                this.response = await this.axios.post('/hero/delete/' + id);
+                if (!confirm('Really delete this hero???')) {
+                    return;
+                }
+                await this.axios.post('/hero/delete/' + id);
                 this.$router.push('/hero/list');
             }
         }

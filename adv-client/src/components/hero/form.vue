@@ -54,7 +54,7 @@
                 <button v-if="item.id > 0" class="btn btn-success float-right" @click="saveItem">Update</button>
                 <button v-else class="btn btn-success float-right" @click="saveItem">Create</button>
                 <button class="btn btn-warning float-right" @click="$emit('close')">Close</button>
-                <button v-if="item.id > 0" class="btn btn-danger float-left" @click="$emit('delete')">Delete</button>
+                <button v-if="item.id > 0" class="btn btn-danger float-left" @click="$emit('delete', item.id)">Delete</button>
             </div>
         </form>
     </div>

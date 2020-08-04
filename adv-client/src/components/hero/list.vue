@@ -18,7 +18,7 @@
                     <td>{{ item.name}}</td>
                     <td>{{ item.le }}</td>
                     <td>{{ item.le_current }}</td>
-                    <td><button class="btn btn-secondary" @click="decrease(item.id)">-1</button></td>
+                    <td><button class="btn btn-secondary" @click="decrease(item.id)">-1</button><button class="btn btn-danger" @click="deleteHero(item.id)">Delete</button></td>
                 </tr>
             </template>
             </tbody>
@@ -58,6 +58,13 @@
       async get() {
           const response = await this.axios.get('/hero/list');
           this.heros = response.data
+      },
+      async deleteHero(id) {
+          if (!confirm('Really delete this hero???')) {
+              return;
+          }
+          await this.axios.post('/hero/delete/' + id);
+          this.get();
       }
     }
   }

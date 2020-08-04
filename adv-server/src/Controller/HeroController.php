@@ -114,6 +114,24 @@ class HeroController extends ApiController
     }
 
     /**
+     * @param int $id
+     * @param Request $request
+     * @param HeroRepository $heroRepository
+     * @param EntityManagerInterface $em
+     * @return JsonResponse
+     */
+    public function delete(int $id, Request $request, HeroRepository $heroRepository, EntityManagerInterface $em): JsonResponse
+    {
+        $hero = $heroRepository->find($id);
+        if (null === $hero) {
+            return $this->respondCreated('Hero with id ' . $id . ' was not found. (Already removed?)');
+        }
+        $em->remove($hero);
+        $em->flush();
+        return $this->respondCreated(true);
+    }
+
+    /**
      * @param Request $request
      * @param EntityManagerInterface $em
      * @param HeroRepository $heroRepository
