@@ -74,6 +74,46 @@ class HeroController extends ApiController
     }
 
     /**
+     * @param int $id
+     * @param Request $request
+     * @param HeroRepository $heroRepository
+     * @param EntityManagerInterface $em
+     * @return JsonResponse
+     */
+    public function update(int $id, Request $request, HeroRepository $heroRepository, EntityManagerInterface $em): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+        $request->request->replace(is_array($data) ? $data : array());
+
+        // validate the title
+        if (! $request->get('name')) {
+            return $this->respondValidationError('Please provide a name!');
+        }
+
+        // persist the new hero
+        $hero = $heroRepository->find($id);
+        $hero->setName($request->get('name'));
+        $hero->setClass($request->get('class'));
+        $hero->setType($request->get('type'));
+        $hero->setDescription($request->get('description'));
+        $hero->setPic($request->get('pic'));
+        $hero->setLe($request->get('le'));
+        $hero->setLeCurrent($request->get('le_current'));
+        $hero->setAe($request->get('ae'));
+        $hero->setAeCurrent($request->get('ae_current'));
+        $hero->setInventory($request->get('inventory'));
+        $hero->setWeapon($request->get('weapon'));
+        $hero->setAt($request->get('at'));
+        $hero->setPa($request->get('pa'));
+        $hero->setAttributes($request->get('attributes'));
+        $hero->setState($request->get('state'));
+
+        $em->persist($hero);
+        $em->flush();
+        return $this->respondCreated($heroRepository->transform($hero));
+    }
+
+    /**
      * @param Request $request
      * @param EntityManagerInterface $em
      * @param HeroRepository $heroRepository

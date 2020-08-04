@@ -19,6 +19,10 @@ heroGet:
     path: /hero/get/{id}
     controller: App\Controller\HeroController::get
 
+heroUpdate:
+    path: /hero/update/{id}
+    controller: App\Controller\HeroController::update
+
 decrease:
   path: /hero/decrease
   controller: App\Controller\HeroController::decrease
