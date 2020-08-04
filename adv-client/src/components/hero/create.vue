@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Create</h1>
-        <hero-form :item=item @save="createHero"></hero-form>
+        <hero-form :item=item @save="createHero" @close="$router.push('/hero/list')"></hero-form>
     </div>
 </template>
 

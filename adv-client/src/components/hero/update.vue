@@ -2,7 +2,7 @@
     <div>
         {{ response }}
         <h1>Update</h1>
-        <hero-form :item=item @save="updateHero"></hero-form>
+        <hero-form :item=item @save="updateHero" @close="$router.push('/hero/list')"></hero-form>
     </div>
 </template>
 
