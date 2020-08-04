@@ -109,7 +109,7 @@ class Hero
 
     public function getClass(): string
     {
-        return $this->name;
+        return $this->class;
     }
 
     public function setClass(string $value): self
