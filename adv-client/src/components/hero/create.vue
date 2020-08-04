@@ -37,7 +37,7 @@
             async createHero(item) {
                 var params = JSON.stringify(item);
                 this.response = await this.axios.post('/hero/create', params);
-                // this.$router.push('heros-update')
+                this.$router.push('hero/update/' + this.response.data.id)
             }
         }
     }
