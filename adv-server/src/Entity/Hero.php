@@ -27,6 +27,11 @@ class Hero
     private $class;
 
     /**
+     * @ORM\Column(type="integer", length=10)
+     */
+    private $type;
+
+    /**
      * @ORM\Column(type="string", length=1023)
      */
     private $description;
@@ -88,7 +93,7 @@ class Hero
 
     public function getId(): int
     {
-        return $this->id;
+        return $this->id ?? 0;
     }
 
     public function getName(): string
@@ -113,12 +118,23 @@ class Hero
         return $this;
     }
 
-    public function setDescription(): string
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $value): self
+    {
+        $this->type = $value;
+        return $this;
+    }
+
+    public function getDescription(): string
     {
         return $this->description;
     }
 
-    public function getDescription(string $value): self
+    public function setDescription(string $value): self
     {
         $this->description = $value;
         return $this;
@@ -140,9 +156,9 @@ class Hero
         return $this->le;
     }
 
-    public function setLe(int $le): self
+    public function setLe(int $value): self
     {
-        $this->le = $le;
+        $this->le = $value;
         return $this;
     }
 
@@ -151,9 +167,9 @@ class Hero
         return $this->le_current;
     }
 
-    public function setLeCurrent(int $le_current): self
+    public function setLeCurrent(int $value): self
     {
-        $this->le_current = $le_current;
+        $this->le_current = $value;
         return $this;
     }
 
@@ -162,20 +178,20 @@ class Hero
         return $this->ae;
     }
 
-    public function setAe(int $le): self
+    public function setAe(int $value): self
     {
-        $this->le = $le;
+        $this->ae = $value;
         return $this;
     }
 
     public function getAeCurrent(): int
     {
-        return $this->le_current;
+        return $this->ae_current;
     }
 
-    public function setAeCurrent(int $le_current): self
+    public function setAeCurrent(int $value): self
     {
-        $this->le_current = $le_current;
+        $this->ae_current = $value;
         return $this;
     }
 
@@ -208,7 +224,7 @@ class Hero
 
     public function setAt(int $value): self
     {
-        $this->le_current = $value;
+        $this->at = $value;
         return $this;
     }
 
