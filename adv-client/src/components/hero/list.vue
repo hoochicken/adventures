@@ -1,6 +1,8 @@
 <template>
     <div class="container">
         <h1>Heros</h1>
+        {{ searchterm }}
+        <search @resetSearch="resetSearch" @search="search" />
         <table class="table table-striped table-hover">
             <thead>
             <tr>
@@ -35,14 +37,17 @@
 </template>
 
 <script>
+  import Search from "../global/search";
   export default {
     name: 'hero-list',
-    data() {
-      return {
-        heros: {},
-        currentId: 0,
-          response: {}
-      }
+      components: {Search},
+      data() {
+        return {
+            heros: {},
+            currentId: 0,
+            response: {},
+            searchterm: ''
+        }
     },
     async mounted () {
       this.get()
@@ -68,6 +73,12 @@
       },
       updateHero(id) {
           this.$router.push('/hero/update/' + id);
+      },
+      async search(searchterm) {
+          this.searchterm = searchterm;
+      },
+      async resetSearch() {
+          this.searchterm = '';
       }
     }
   }
