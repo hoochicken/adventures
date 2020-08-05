@@ -7,9 +7,9 @@ index:
     path: /
     controller: App\Controller\HeroController::index
 
-heros:
-    path: /hero/list
-    controller: App\Controller\HeroController::index
+heroList:
+  path: /hero/list
+  controller: App\Controller\HeroController::list
 
 heroCreate:
     path: /hero/create

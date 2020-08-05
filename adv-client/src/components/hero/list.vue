@@ -49,7 +49,7 @@
         }
     },
     async mounted () {
-      this.get()
+      this.list()
     },
     methods: {
       async decrease(id) {
@@ -57,10 +57,13 @@
           var params = new URLSearchParams();
           params.append('id', id);
           this.response = await this.axios.post('/hero/decrease', params);
-          this.get();
+          this.list();
       },
-      async get() {
-          const response = await this.axios.get('/hero/list');
+      async list() {
+          let params = new URLSearchParams();
+          params.append('searchterm', this.searchterm);
+          // console.log(params.get('searchterm'));
+          const response = await this.axios.post('/hero/list', params);
           this.heros = response.data
       },
       async deleteHero(id) {
@@ -68,13 +71,14 @@
               return;
           }
           await this.axios.post('/hero/delete/' + id);
-          this.get();
+          this.list();
       },
       updateHero(id) {
           this.$router.push('/hero/update/' + id);
       },
       async search(searchterm) {
           this.searchterm = searchterm;
+          this.list();
       },
       async resetSearch() {
           this.searchterm = '';

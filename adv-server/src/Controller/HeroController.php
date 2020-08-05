@@ -13,11 +13,14 @@ class HeroController extends ApiController
 {
 
     /**
+     * @param Request $request
      * @param HeroRepository $heroRepository
      * @return JsonResponse
      */
-    public function index(HeroRepository $heroRepository): JsonResponse
+    public function list(Request $request, HeroRepository $heroRepository): JsonResponse
     {
+        // $searchterm = $request->request->get('searchterm')];
+
         $heros = $heroRepository->transformAll();
         return $this->respond($heros);
     }
