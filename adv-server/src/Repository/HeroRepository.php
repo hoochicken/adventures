@@ -6,11 +6,13 @@ use App\Entity\Hero;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 // use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * @method Hero|null find($id, $lockMode = null, $lockVersion = null)
  * @method Hero|null findOneBy(array $criteria, array $orderBy = null)
- * @method Hero[]    findAll()
+ * X@xXmethod Hero[]    findAXXll()
  * @method Hero[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class HeroRepository extends ServiceEntityRepository
@@ -26,17 +28,50 @@ class HeroRepository extends ServiceEntityRepository
      */
     public function findByName($value)
     {
-        $query = $this->createQueryBuilder('h')
-            ->andWhere('h.name LIKE :val')
-            ->setParameter('val', '%' . $value . '%')
-            ->orderBy('h.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-        ;
+        $qb = $this->createQueryBuilder('h')
+            ->orderBy('h.id', 'ASC');
+
+        if (!empty($value)) {
+            $qb->andWhere('h.name LIKE :val')
+               ->setParameter('val', '%' . $value . '%');
+        }
+        $qb
+            ->setFirstResult((int) 2)
+            ->setMaxResults(3);
+        $query = $qb->getQuery();
         return $query->getResult();
-        // return $query->getSQL();
-        // return $query->getDQL();
     }
+
+    /**
+     * @return Hero[] Returns an array of Hero objects
+     */
+    public function findAll()
+    {
+        $qb = $this->createQueryBuilder('h')
+            ->orderBy('h.id', 'ASC')
+            ->setFirstResult((int) 0)
+            ->setMaxResults(3)
+        ;
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param $firstResult
+     * @param $maxResult
+     * @return Paginator
+     */
+    function paginate(QueryBuilder $qb, $firstResult, $maxResult)
+    {
+        $qb->setFirstResult((int) $firstResult)
+            ->setMaxResults((int) $maxResult);
+
+        $paginator = new Paginator($qb->getQuery(), true);
+
+        return $paginator;
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Hero

@@ -21,7 +21,8 @@ class HeroController extends ApiController
     {
         $searchterm = trim($request->request->get('searchterm'));
 
-        if (empty($searchterm)) $heros = $heroRepository->transformAll($heroRepository->findAll());
+        // if (empty($searchterm)) $heros = $heroRepository->transformAll($heroRepository->findAll());
+        if (empty($searchterm)) $heros = $heroRepository->transformAll($heroRepository->findByName(''));
         else $heros = $heroRepository->transformAll($heroRepository->findByName($searchterm));
 
         return $this->respond($heros);
