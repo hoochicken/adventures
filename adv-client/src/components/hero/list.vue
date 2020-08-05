@@ -1,7 +1,6 @@
 <template>
     <div class="container">
         <h1>Heros</h1>
-        {{ searchterm }}
         <search @resetSearch="resetSearch" @search="search" />
         <table class="table table-striped table-hover">
             <thead>
