@@ -7,10 +7,12 @@ import HeroList from './components/hero/list.vue'
 import HeroCreate from './components/hero/create.vue'
 import HeroUpdate from './components/hero/update.vue'
 import axios from "./plugins/axios";
+import Pagination from 'vue-paginate-al'
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter, axios);
 Vue.axios.defaults.baseURL = `http://${process.env.VUE_APP_ENV_HOST}:${process.env.VUE_APP_ENV_PORT}`;
+Vue.component('pagination', Pagination);
 
 const routes = [
   { path: '/hero/list', component: HeroList },

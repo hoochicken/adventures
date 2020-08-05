@@ -24,6 +24,7 @@
             </template>
             </tbody>
         </table>
+        <pagination :totalPage="listState.totalPage" @btnClick="goToFunction"></pagination>
         <button class="btn btn-success " @click="$router.push('/hero/create')">Create New Hero</button>
 
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -42,10 +43,15 @@
       components: {Search},
       data() {
         return {
-            heros: {},
+            heros: [],
             currentId: 0,
             response: {},
-            searchterm: ''
+            searchterm: '',
+            listState: {
+                totalPage: 10,
+
+            }
+            // exampleItems: [...Array(150).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }))
         }
     },
     async mounted () {
@@ -64,7 +70,7 @@
           params.append('searchterm', this.searchterm);
           // console.log(params.get('searchterm'));
           const response = await this.axios.post('/hero/list', params);
-          this.heros = response.data
+          this.heros = response.data;
       },
       async deleteHero(id) {
           if (!confirm('Really delete this hero???')) {
@@ -82,6 +88,21 @@
       },
       async resetSearch() {
           this.searchterm = '';
+      },
+      onChangePage(heros) {
+          this.heros = heros;
+      },
+      goToFunction : function(n)
+      {
+          console.log(n);
+      },
+      goToFuncWithData : function(n, data)
+      {
+          console.log(n, data);
+      },
+      goToFuncWithMultipleData : function(n, data)
+      {
+          console.log(n, data[0], data[1]);
       }
     }
   }
