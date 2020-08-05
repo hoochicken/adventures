@@ -20,22 +20,23 @@ class HeroRepository extends ServiceEntityRepository
         parent::__construct($registry, Hero::class);
     }
 
-//    /**
-//     * @return Hero[] Returns an array of Hero objects
-//     */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param $value
+     * @return Hero[] Returns an array of Hero objects
+     */
+    public function findByName($value)
     {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
+        $query = $this->createQueryBuilder('h')
+            ->andWhere('h.name LIKE :val')
+            ->setParameter('val', '%' . $value . '%')
+            ->orderBy('h.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
         ;
+        return $query->getResult();
+        // return $query->getSQL();
+        // return $query->getDQL();
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Hero
@@ -71,15 +72,12 @@ class HeroRepository extends ServiceEntityRepository
         ];
     }
 
-    public function transformAll()
+    public function transformAll($heros)
     {
-        $heros = $this->findAll();
         $herosArray = [];
-
         foreach ($heros as $hero) {
             $herosArray[] = $this->transform($hero);
         }
-
         return $herosArray;
     }
 }

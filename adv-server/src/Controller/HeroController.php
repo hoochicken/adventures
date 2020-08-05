@@ -19,9 +19,11 @@ class HeroController extends ApiController
      */
     public function list(Request $request, HeroRepository $heroRepository): JsonResponse
     {
-        // $searchterm = $request->request->get('searchterm')];
+        $searchterm = trim($request->request->get('searchterm'));
 
-        $heros = $heroRepository->transformAll();
+        if (empty($searchterm)) $heros = $heroRepository->transformAll($heroRepository->findAll());
+        else $heros = $heroRepository->transformAll($heroRepository->findByName($searchterm));
+
         return $this->respond($heros);
     }
 
