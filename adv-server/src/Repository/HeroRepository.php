@@ -31,45 +31,19 @@ class HeroRepository extends ServiceEntityRepository
     public function findByName($value, int $currentPage = 0, int $maxResults = 0)
     {
         $firstResult = $maxResults * $currentPage;
-
-        $qb = $this->createQueryBuilder('h')
-            ->orderBy('h.id', 'ASC');
+        $qb = $this->createQueryBuilder('h');
 
         if (!empty($value)) {
             $qb->andWhere('h.name LIKE :val')
                ->setParameter('val', '%' . $value . '%');
         }
-        $qb
-            ->setFirstResult($firstResult)
-            ->setMaxResults($maxResults);
+
+        $qb->setFirstResult($firstResult)
+           ->setMaxResults($maxResults)
+           ->orderBy('h.id', 'ASC');
 
         $query = $qb->getQuery();
-
-        // load doctrine Paginator
-        $paginator = new Paginator($query);
-
-        // you can get total items
-        $totalItems = count($paginator);
-
-        // get total pages
-        $totalPage = $maxResults > 0 ? ceil($totalItems / $maxResults) : $totalItems;
-
-        // now get one page's items:
-        $paginator
-            ->getQuery()
-            ->setFirstResult($firstResult) // set the offset
-            ->setMaxResults($maxResults);
-
-        $listState = [
-            'currentPage' => $currentPage,
-            'maxResults' => $maxResults,
-            'totalPage' => $totalPage,
-            'firstResult' => $firstResult,
-            'totalItems' => $totalItems,
-        ];
-
-        $query = $qb->getQuery();
-        return ['items' => $query->getResult(), 'listState' => $listState];
+        return ['items' => $query->getResult(), 'listState' => $this->getListState($query, $maxResults, $firstResult, $currentPage)];
     }
 
     /**
@@ -144,5 +118,32 @@ class HeroRepository extends ServiceEntityRepository
             $herosArray[] = $this->transform($hero);
         }
         return $herosArray;
+    }
+
+    public function getListState($query, $maxResults, $firstResult, $currentPage)
+    {
+        // load doctrine Paginator
+        $paginator = new Paginator($query);
+
+        // you can get total items
+        $totalItems = count($paginator);
+
+        // get total pages
+        $totalPage = $maxResults > 0 ? ceil($totalItems / $maxResults) : $totalItems;
+
+        // now get one page's items:
+        $paginator
+            ->getQuery()
+            ->setFirstResult($firstResult) // set the offset
+            ->setMaxResults($maxResults);
+
+        $listState = [
+            'currentPage' => $currentPage,
+            'maxResults' => $maxResults,
+            'totalPage' => $totalPage,
+            'firstResult' => $firstResult,
+            'totalItems' => $totalItems,
+        ];
+        return $listState;
     }
 }
