@@ -32,3 +32,37 @@
 <style scoped>
 
 </style>
+
+<docs>
+    This search component displays a searchfield with a search and a reset button.
+
+    ## Examples
+
+    ```jsx
+    <template>
+        <search @resetSearch="resetSearch" @search="search" />
+    </template>
+
+    <script>
+        import Search from "../global/search";
+        export default {
+            data() {
+                return {
+                    searchterm: '',
+                }
+            },
+            methods: {
+                search(searchterm) {
+                    this.searchterm = searchterm;
+                    // some other code
+                },
+                resetSearch() {
+                    this.searchterm = '';
+                    // some other code
+                }
+            }
+        }
+    </script>
+    ```
+</docs>
+
