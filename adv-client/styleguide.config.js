@@ -1,6 +1,6 @@
 module.exports = {
 	// set your styleguidist configuration here
-	title: 'Default Style Guide',
+	title: 'Adventurous Style Guidist!',
 	// components: 'src/components/**/[A-Z]*.vue',
 	// defaultExample: true,
 	// sections: [
@@ -13,5 +13,6 @@ module.exports = {
 	//   // custom config goes here
 	// },
 	// components: 'components/**/[a-zA-Z]*.vue',
-	exampleMode: 'expand'
+	exampleMode: 'expand',
+	components: 'src/components/global/[a-zA-Z]*.vue',
 }
