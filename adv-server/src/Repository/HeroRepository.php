@@ -24,10 +24,14 @@ class HeroRepository extends ServiceEntityRepository
 
     /**
      * @param $value
+     * @param int $currentPage
+     * @param int $maxResults
      * @return Hero[] Returns an array of Hero objects
      */
-    public function findByName($value)
+    public function findByName($value, int $currentPage = 0, int $maxResults = 0)
     {
+        $firstResult = $maxResults * $currentPage;
+
         $qb = $this->createQueryBuilder('h')
             ->orderBy('h.id', 'ASC');
 
@@ -36,10 +40,36 @@ class HeroRepository extends ServiceEntityRepository
                ->setParameter('val', '%' . $value . '%');
         }
         $qb
-            ->setFirstResult((int) 2)
-            ->setMaxResults(3);
+            ->setFirstResult($firstResult)
+            ->setMaxResults($maxResults);
+
         $query = $qb->getQuery();
-        return $query->getResult();
+
+        // load doctrine Paginator
+        $paginator = new Paginator($query);
+
+        // you can get total items
+        $totalItems = count($paginator);
+
+        // get total pages
+        $totalPage = $maxResults > 0 ? ceil($totalItems / $maxResults) : $totalItems;
+
+        // now get one page's items:
+        $paginator
+            ->getQuery()
+            ->setFirstResult($firstResult) // set the offset
+            ->setMaxResults($maxResults);
+
+        $listState = [
+            'currentPage' => $currentPage,
+            'maxResults' => $maxResults,
+            'totalPage' => $totalPage,
+            'firstResult' => $firstResult,
+            'totalItems' => $totalItems,
+        ];
+
+        $query = $qb->getQuery();
+        return ['items' => $query->getResult(), 'listState' => $listState];
     }
 
     /**

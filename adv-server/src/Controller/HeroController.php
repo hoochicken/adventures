@@ -19,13 +19,18 @@ class HeroController extends ApiController
      */
     public function list(Request $request, HeroRepository $heroRepository): JsonResponse
     {
+        // retrieve data from request query
         $searchterm = trim($request->request->get('searchterm'));
+        $listState = json_decode($request->request->get('listState'));
+        $currentPage = $listState->currentPage ?? 0;
+        $maxResult = $listState->maxResults ?? 0;
 
-        // if (empty($searchterm)) $heros = $heroRepository->transformAll($heroRepository->findAll());
-        if (empty($searchterm)) $heros = $heroRepository->transformAll($heroRepository->findByName(''));
-        else $heros = $heroRepository->transformAll($heroRepository->findByName($searchterm));
+        // get items and pagination info
+        $result = $heroRepository->findByName($searchterm, $currentPage, $maxResult);
+        $items = $heroRepository->transformAll($result['items']);
 
-        return $this->respond($heros);
+        // build return array
+        return $this->respond(['items' => $items, 'listState' => $result['listState']]);
     }
 
     /**

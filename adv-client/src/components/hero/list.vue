@@ -24,7 +24,7 @@
             </template>
             </tbody>
         </table>
-        <pagination :totalPage="listState.totalPage" @btnClick="goToFunction"></pagination>
+        <pagination :totalPage="listState.totalPage" @btnClick="changePage"></pagination>
         <button class="btn btn-success " @click="$router.push('/hero/create')">Create New Hero</button>
 
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -48,10 +48,11 @@
             response: {},
             searchterm: '',
             listState: {
-                totalPage: 10,
-
+                maxResults: 3,
+                currentPage:0,
+                totalPage: 0,
+                totalItems: 0
             }
-            // exampleItems: [...Array(150).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }))
         }
     },
     async mounted () {
@@ -68,9 +69,10 @@
       async list() {
           let params = new URLSearchParams();
           params.append('searchterm', this.searchterm);
-          // console.log(params.get('searchterm'));
+          params.append('listState', JSON.stringify(this.listState));
           const response = await this.axios.post('/hero/list', params);
-          this.heros = response.data;
+          this.heros = response.data.items;
+          this.listState = response.data.listState;
       },
       async deleteHero(id) {
           if (!confirm('Really delete this hero???')) {
@@ -89,21 +91,10 @@
       async resetSearch() {
           this.searchterm = '';
       },
-      onChangePage(heros) {
-          this.heros = heros;
+      changePage : function(n) {
+          this.listState.currentPage = n > 0 ? n - 1 : n;
+          this.list();
       },
-      goToFunction : function(n)
-      {
-          console.log(n);
-      },
-      goToFuncWithData : function(n, data)
-      {
-          console.log(n, data);
-      },
-      goToFuncWithMultipleData : function(n, data)
-      {
-          console.log(n, data[0], data[1]);
-      }
     }
   }
 </script>
