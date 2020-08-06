@@ -52,6 +52,12 @@
                 currentPage:0,
                 totalPage: 0,
                 totalItems: 0
+            },
+            listStateDefault: {
+                maxResults: 3,
+                currentPage:0,
+                totalPage: 0,
+                totalItems: 0
             }
         }
     },
@@ -86,10 +92,13 @@
       },
       async search(searchterm) {
           this.searchterm = searchterm;
+          this.listState = this.listStateDefault;
           this.list();
       },
       async resetSearch() {
           this.searchterm = '';
+          this.listState = this.listStateDefault;
+          this.list();
       },
       changePage : function(n) {
           this.listState.currentPage = n > 0 ? n - 1 : n;
