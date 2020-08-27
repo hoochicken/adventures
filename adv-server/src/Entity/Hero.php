@@ -5,259 +5,425 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\HeroRepository")
+ * Hero
+ *
+ * @ORM\Table(name="hero")
+ * * @ORM\Entity(repositoryClass="App\Repository\HeroRepository")
  */
 class Hero
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="integer", length=10)
-     */
-    private $class;
-
-    /**
-     * @ORM\Column(type="integer", length=10)
+     * @var int
+     *
+     * @ORM\Column(name="type", type="integer", nullable=false)
      */
     private $type;
 
     /**
-     * @ORM\Column(type="string", length=1023)
+     * @var int
+     *
+     * @ORM\Column(name="class", type="integer", nullable=false)
+     */
+    private $class;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255, nullable=false)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="pic", type="string", length=255, nullable=false)
      */
     private $pic;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="le", type="integer", nullable=false)
      */
     private $le;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="le_current", type="integer", nullable=false)
      */
-    private $le_current;
+    private $leCurrent;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="ae", type="integer", nullable=false)
      */
-    private $ae;
+    private $ae = '0';
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="ae_current", type="integer", nullable=false)
      */
-    private $ae_current;
+    private $aeCurrent = '0';
 
     /**
-     * @ORM\Column(type="string", length=1023)
+     * @var string
+     *
+     * @ORM\Column(name="inventory", type="string", length=1023, nullable=false)
      */
     private $inventory;
 
     /**
-     * @ORM\Column(type="integer", length=10)
+     * @var int
+     *
+     * @ORM\Column(name="weapon", type="integer", nullable=false)
      */
     private $weapon;
 
     /**
-     * @ORM\Column(type="integer", length=10)
+     * @var int
+     *
+     * @ORM\Column(name="at", type="integer", nullable=false)
      */
     private $at;
 
     /**
-     * @ORM\Column(type="integer", length=10)
+     * @var int
+     *
+     * @ORM\Column(name="pa", type="integer", nullable=false)
      */
     private $pa;
 
     /**
-     * @ORM\Column(type="string", length=1023)
+     * @var string
+     *
+     * @ORM\Column(name="attributes", type="string", length=1023, nullable=false, options={"default"="{}"})
      */
-    private $attributes;
+    private $attributes = '{}';
 
     /**
-     * @ORM\Column(type="integer", length=10)
+     * @var bool
+     *
+     * @ORM\Column(name="state", type="boolean", nullable=false, options={"default"="1"})
      */
-    private $state;
+    private $state = true;
 
-    public function getId(): int
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     */
+    private $created = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="created_user", type="integer", nullable=false)
+     */
+    private $createdUser = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     */
+    private $updated = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="updated_user", type="integer", nullable=false)
+     */
+    private $updatedUser = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="deleted", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     */
+    private $deleted = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="deleted_user", type="integer", nullable=false)
+     */
+    private $deletedUser = '0';
+
+    public function getId(): ?int
     {
-        return $this->id ?? 0;
+        return $this->id;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName(string $value): self
+    public function setName(string $name): self
     {
-        $this->name = $value;
+        $this->name = $name;
+
         return $this;
     }
 
-    public function getClass(): string
-    {
-        return $this->class;
-    }
-
-    public function setClass(string $value): self
-    {
-        $this->class = $value;
-        return $this;
-    }
-
-    public function getType(): string
+    public function getType(): ?int
     {
         return $this->type;
     }
 
-    public function setType(string $value): self
+    public function setType(int $type): self
     {
-        $this->type = $value;
+        $this->type = $type;
+
         return $this;
     }
 
-    public function getDescription(): string
+    public function getClass(): ?int
+    {
+        return $this->class;
+    }
+
+    public function setClass(int $class): self
+    {
+        $this->class = $class;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(string $value): self
+    public function setDescription(string $description): self
     {
-        $this->description = $value;
+        $this->description = $description;
+
         return $this;
     }
 
-    public function getPic(): string
+    public function getPic(): ?string
     {
         return $this->pic;
     }
 
-    public function setPic(string $value): self
+    public function setPic(string $pic): self
     {
-        $this->pic = $value;
+        $this->pic = $pic;
+
         return $this;
     }
 
-    public function getLe(): int
+    public function getLe(): ?int
     {
         return $this->le;
     }
 
-    public function setLe(int $value): self
+    public function setLe(int $le): self
     {
-        $this->le = $value;
+        $this->le = $le;
+
         return $this;
     }
 
-    public function getLeCurrent(): int
+    public function getLeCurrent(): ?int
     {
-        return $this->le_current;
+        return $this->leCurrent;
     }
 
-    public function setLeCurrent(int $value): self
+    public function setLeCurrent(int $leCurrent): self
     {
-        $this->le_current = $value;
+        $this->leCurrent = $leCurrent;
+
         return $this;
     }
 
-    public function getAe(): int
+    public function getAe(): ?int
     {
         return $this->ae;
     }
 
-    public function setAe(int $value): self
+    public function setAe(int $ae): self
     {
-        $this->ae = $value;
+        $this->ae = $ae;
+
         return $this;
     }
 
-    public function getAeCurrent(): int
+    public function getAeCurrent(): ?int
     {
-        return $this->ae_current;
+        return $this->aeCurrent;
     }
 
-    public function setAeCurrent(int $value): self
+    public function setAeCurrent(int $aeCurrent): self
     {
-        $this->ae_current = $value;
+        $this->aeCurrent = $aeCurrent;
+
         return $this;
     }
 
-    public function getInventory(): string
+    public function getInventory(): ?string
     {
         return $this->inventory;
     }
 
-    public function setInventory(string $value): self
+    public function setInventory(string $inventory): self
     {
-        $this->inventory = $value;
+        $this->inventory = $inventory;
+
         return $this;
     }
 
-    public function getWeapon(): int
+    public function getWeapon(): ?int
     {
         return $this->weapon;
     }
 
-    public function setWeapon(int $value): self
+    public function setWeapon(int $weapon): self
     {
-        $this->weapon = $value;
+        $this->weapon = $weapon;
+
         return $this;
     }
 
-    public function getAt(): int
+    public function getAt(): ?int
     {
         return $this->at;
     }
 
-    public function setAt(int $value): self
+    public function setAt(int $at): self
     {
-        $this->at = $value;
+        $this->at = $at;
+
         return $this;
     }
 
-    public function getPa(): int
+    public function getPa(): ?int
     {
         return $this->pa;
     }
 
-    public function setPa(int $value): self
+    public function setPa(int $pa): self
     {
-        $this->pa = $value;
+        $this->pa = $pa;
+
         return $this;
     }
 
-    public function getAttributes(): string
+    public function getAttributes(): ?string
     {
         return $this->attributes;
     }
 
-    public function setAttributes(string $value): self
+    public function setAttributes(string $attributes): self
     {
-        $this->attributes = $value;
+        $this->attributes = $attributes;
+
         return $this;
     }
 
-    public function getState(): int
+    public function getState(): ?bool
     {
         return $this->state;
     }
 
-    public function setState(int $value): self
+    public function setState(bool $state): self
     {
-        $this->state = $value;
+        $this->state = $state;
+
         return $this;
     }
+
+    public function getCreated(): ?\DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function setCreated(\DateTimeInterface $created): self
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    public function getCreatedUser(): ?int
+    {
+        return $this->createdUser;
+    }
+
+    public function setCreatedUser(int $createdUser): self
+    {
+        $this->createdUser = $createdUser;
+
+        return $this;
+    }
+
+    public function getUpdated(): ?\DateTimeInterface
+    {
+        return $this->updated;
+    }
+
+    public function setUpdated(\DateTimeInterface $updated): self
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    public function getUpdatedUser(): ?int
+    {
+        return $this->updatedUser;
+    }
+
+    public function setUpdatedUser(int $updatedUser): self
+    {
+        $this->updatedUser = $updatedUser;
+
+        return $this;
+    }
+
+    public function getDeleted(): ?\DateTimeInterface
+    {
+        return $this->deleted;
+    }
+
+    public function setDeleted(\DateTimeInterface $deleted): self
+    {
+        $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    public function getDeletedUser(): ?int
+    {
+        return $this->deletedUser;
+    }
+
+    public function setDeletedUser(int $deletedUser): self
+    {
+        $this->deletedUser = $deletedUser;
+
+        return $this;
+    }
+
+
 }
