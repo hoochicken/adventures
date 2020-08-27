@@ -56,6 +56,7 @@ Database | phpMyAdmin | <http://127.0.0.1:8081/>
 Doctrine uses a php fil, it is called via cli.
 
 A. Doctrine maps existing database
+
 ~~~
 cd adv-server
 
@@ -64,9 +65,15 @@ php bin/console doctrine:mapping:import "App\Entity" annotation --path=src/Entit
 
 # add getter/setter methods
 php bin/console make:entity --regenerate App
+# this should generate repository a well, but doesn't, so:
+
+# got to entity file
+# add "* @ORM\Entity(repositoryClass="App\Repository\ActionRepository")" within class comment
+# regenerate class
+php bin/console make:entity --regenerate App
 ~~~
 
-B. Generate new Entity By Doctrine
+B. Generate New Entity By Doctrine
 
 ~~~
 cd adv-server
@@ -86,3 +93,5 @@ php bin/console doctrine:migrations:migrate
 
 * <https://gist.github.com/jcavat/2ed51c6371b9b488d6a940ba1049189b>
 * <https://developer.okta.com/blog/2018/06/14/php-crud-app-symfony-vue>
+* <https://symfony.com/doc/current/doctrine/reverse_engineering.html>
+
