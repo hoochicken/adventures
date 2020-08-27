@@ -1,6 +1,6 @@
 #index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+#        path: /
+#        controller: App\Controller\DefaultController::index
 
 
 index:
@@ -8,8 +8,8 @@ index:
     controller: App\Controller\HeroController::index
 
 heroList:
-  path: /hero/list
-  controller: App\Controller\HeroController::list
+    path: /hero/list
+    controller: App\Controller\HeroController::list
 
 heroCreate:
     path: /hero/create
@@ -28,15 +28,34 @@ heroDelete:
     controller: App\Controller\HeroController::delete
 
 decrease:
-  path: /hero/decrease
-  controller: App\Controller\HeroController::decrease
-  # methods: GET|PATCH|POST|HEAD
-  schemes: [http]
+    path: /hero/decrease
+    controller: App\Controller\HeroController::decrease
+    # methods: GET|PATCH|POST|HEAD
+    schemes: [http]
 
 getHeroClass:
-  path: /hero/getClass
-  controller: App\Controller\HeroController::getClass
-  # methods: GET|PATCH|POST|HEAD
-  schemes: [http]
+    path: /hero/getClass
+    controller: App\Controller\HeroController::getClass
+    # methods: GET|PATCH|POST|HEAD
+    schemes: [http]
 
+placeList:
+    path: /place/list
+    controller: App\Controller\PlaceController::list
+
+placeCreate:
+    path: /place/create
+    controller: App\Controller\PlaceController::create
+
+placeGet:
+    path: /place/get/{id}
+    controller: App\Controller\PlaceController::get
+
+placeUpdate:
+    path: /place/update/{id}
+    controller: App\Controller\PlaceController::update
+
+placeDelete:
+    path: /place/delete/{id}
+    controller: App\Controller\PlaceController::delete
 
