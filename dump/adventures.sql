@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: hero_mysql
--- Erstellungszeit: 27. Aug 2020 um 17:27
+-- Erstellungszeit: 27. Aug 2020 um 18:16
 -- Server-Version: 8.0.21
 -- PHP-Version: 7.4.6
 
@@ -338,6 +338,12 @@ ALTER TABLE `hero_type`
 --
 ALTER TABLE `item`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indizes für die Tabelle `item2hero`
+--
+ALTER TABLE `item2hero`
+  ADD PRIMARY KEY (`hero_id`,`item_id`) USING BTREE;
 
 --
 -- Indizes für die Tabelle `item_type`
