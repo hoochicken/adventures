@@ -51,6 +51,37 @@ Frontend | vue | <http://127.0.0.1:8080/>
 Backend | Symfony | <http://127.0.0.1:8000/>
 Database | phpMyAdmin | <http://127.0.0.1:8081/>
 
+## Renew Entity classes by doctrine
+
+Doctrine uses a php fil, it is called via cli.
+
+A. Doctrine maps existing database
+~~~
+cd adv-server
+
+# generate php classes
+php bin/console doctrine:mapping:import "App\Entity" annotation --path=src/Entity
+
+# add getter/setter methods
+php bin/console make:entity --regenerate App
+~~~
+
+B. Generate new Entity By Doctrine
+
+~~~
+cd adv-server
+
+# create entity
+php bin/console make:entity
+# follow instructions given by doctrine
+
+# create entity
+php bin/console make:migration
+
+# create table in database
+php bin/console doctrine:migrations:migrate
+~~~ 
+
 ## based on
 
 * <https://gist.github.com/jcavat/2ed51c6371b9b488d6a940ba1049189b>
