@@ -81,6 +81,7 @@ class PlaceController extends ApiController
      */
     public function update(int $id, Request $request, PlaceRepository $placeRepository, EntityManagerInterface $em): JsonResponse
     {
+        // return $this->respondCreated([1,2,3,4]);
         $data = json_decode($request->getContent(), true);
         $request->request->replace(is_array($data) ? $data : array());
 
@@ -92,20 +93,7 @@ class PlaceController extends ApiController
         // persist the new place
         $place = $placeRepository->find($id);
         $place->setName($request->get('name'));
-        $place->setClass($request->get('class'));
-        $place->setType($request->get('type'));
         $place->setDescription($request->get('description'));
-        $place->setPic($request->get('pic'));
-        $place->setLe($request->get('le'));
-        $place->setLeCurrent($request->get('le_current'));
-        $place->setAe($request->get('ae'));
-        $place->setAeCurrent($request->get('ae_current'));
-        $place->setInventory($request->get('inventory'));
-        $place->setWeapon($request->get('weapon'));
-        $place->setAt($request->get('at'));
-        $place->setPa($request->get('pa'));
-        $place->setAttributes($request->get('attributes'));
-        $place->setState($request->get('state'));
 
         $em->persist($place);
         $em->flush();

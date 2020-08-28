@@ -8,13 +8,6 @@
                 <label for="name" class="col-sm-2 col-form-label">name</label><input id="name" class="form-control col-sm-10" v-model="item.name"/>
             </div>
             <div class="form-group row form-horizontal">
-                <label for="class" class="col-sm-2 col-form-label">class</label><!--input id="class" class="form-control col-sm-10" v-model="item.class"/-->
-                 <select id="type" class="form-control col-sm-10" required v-model="item.type">
-                     <option value="0"> - please choose - </option>
-                     <option v-for="hcls in placetype" :key="hcls.id" :selected="hcls.id === item.class" :value="hcls.id">{{ hcls.label }} ({{ hcls.id }})</option>
-                 </select>
-            </div>
-            <div class="form-group row form-horizontal">
                  <label for="description" class="col-sm-2 col-form-label">description</label><textarea id="description" class="form-control col-sm-10" v-model="item.description"></textarea>
             </div>
             <div v-if="0 < errors.length" class="alert alert-danger">
@@ -44,8 +37,8 @@
             }
         },
         async mounted () {
-            let classResponse = await this.axios.post('/place/getClass', {});
-            this.placetype = classResponse.data;
+            // let classResponse = await this.axios.post('/place/getClass', {});
+            // this.placetype = classResponse.data;
         },
         methods: {
             saveItem: function(e) {
