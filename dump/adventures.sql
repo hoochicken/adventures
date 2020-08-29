@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: hero_mysql
--- Erstellungszeit: 29. Aug 2020 um 07:17
+-- Erstellungszeit: 29. Aug 2020 um 17:53
 -- Server-Version: 8.0.21
 -- PHP-Version: 7.4.6
 
@@ -34,7 +34,7 @@ CREATE TABLE `action` (
   `description` varchar(1023) NOT NULL,
   `attributes` varchar(1023) NOT NULL,
   `state` tinyint(1) NOT NULL DEFAULT '1',
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` datetime DEFAULT NULL,
   `created_user` int NOT NULL DEFAULT '0',
   `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
@@ -77,7 +77,7 @@ CREATE TABLE `hero` (
   `pa` int NOT NULL,
   `attributes` varchar(1023) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '{}',
   `state` tinyint(1) NOT NULL DEFAULT '1',
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` datetime DEFAULT NULL,
   `created_user` int NOT NULL DEFAULT '0',
   `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
@@ -110,7 +110,7 @@ CREATE TABLE `hero_class` (
   `label` varchar(255) NOT NULL,
   `attributes` varchar(1023) NOT NULL DEFAULT '{}',
   `state` tinyint(1) NOT NULL DEFAULT '1',
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` datetime DEFAULT NULL,
   `created_user` int NOT NULL DEFAULT '0',
   `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
@@ -139,7 +139,7 @@ CREATE TABLE `hero_type` (
   `name` varchar(255) NOT NULL,
   `attributes` varchar(1023) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '{}',
   `state` tinyint(1) NOT NULL DEFAULT '1',
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` datetime DEFAULT NULL,
   `created_user` int NOT NULL DEFAULT '0',
   `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
@@ -172,7 +172,7 @@ CREATE TABLE `item` (
   `weight` float NOT NULL,
   `attributes` varchar(1023) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '{}',
   `state` tinyint(1) NOT NULL DEFAULT '1',
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` datetime DEFAULT NULL,
   `created_user` int NOT NULL DEFAULT '0',
   `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
@@ -201,7 +201,7 @@ CREATE TABLE `item2hero` (
   `hero_id` int NOT NULL,
   `attributes` varchar(1023) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '{}',
   `state` tinyint(1) NOT NULL DEFAULT '1',
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` datetime DEFAULT NULL,
   `created_user` int NOT NULL DEFAULT '0',
   `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
@@ -220,7 +220,7 @@ CREATE TABLE `item_type` (
   `name` varchar(255) NOT NULL,
   `attributes` varchar(1023) NOT NULL DEFAULT '{}',
   `state` tinyint(1) NOT NULL DEFAULT '1',
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` datetime DEFAULT NULL,
   `created_user` int NOT NULL DEFAULT '0',
   `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_user` int NOT NULL DEFAULT '0',
@@ -247,10 +247,10 @@ CREATE TABLE `place` (
   `id` int NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(1023) NOT NULL,
-  `type` int NOT NULL,
+  `type` int DEFAULT '0',
   `attributes` varchar(1023) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '{}',
   `state` tinyint(1) NOT NULL DEFAULT '1',
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` datetime DEFAULT NULL,
   `created_user` int NOT NULL DEFAULT '0',
   `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
@@ -283,7 +283,7 @@ CREATE TABLE `route` (
   `out_direction` int NOT NULL,
   `attributes` varchar(1023) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '{}',
   `state` tinyint(1) NOT NULL DEFAULT '1',
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` datetime DEFAULT NULL,
   `created_user` int NOT NULL DEFAULT '0',
   `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
@@ -408,7 +408,7 @@ ALTER TABLE `item_type`
 -- AUTO_INCREMENT für Tabelle `place`
 --
 ALTER TABLE `place`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT für Tabelle `route`
