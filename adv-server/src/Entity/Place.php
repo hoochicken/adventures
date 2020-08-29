@@ -40,7 +40,7 @@ class Place
      *
      * @ORM\Column(name="type", type="integer", nullable=false)
      */
-    private $type;
+    private $type = '0';
 
     /**
      * @var string
@@ -57,11 +57,11 @@ class Place
     private $state = true;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
-     * @ORM\Column(name="created", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="created", type="datetime", nullable=true)
      */
-    private $created = 'CURRENT_TIMESTAMP';
+    private $created;
 
     /**
      * @var int
@@ -71,11 +71,11 @@ class Place
     private $createdUser = '0';
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
-     * @ORM\Column(name="updated", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="updated", type="datetime", nullable=true)
      */
-    private $updated = 'CURRENT_TIMESTAMP';
+    private $updated;
 
     /**
      * @var int
@@ -85,11 +85,11 @@ class Place
     private $updatedUser = '0';
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
-     * @ORM\Column(name="deleted", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="deleted", type="datetime", nullable=true)
      */
-    private $deleted = 'CURRENT_TIMESTAMP';
+    private $deleted;
 
     /**
      * @var int
@@ -168,7 +168,7 @@ class Place
         return $this->created;
     }
 
-    public function setCreated(\DateTimeInterface $created): self
+    public function setCreated(?\DateTimeInterface $created): self
     {
         $this->created = $created;
 
@@ -192,7 +192,7 @@ class Place
         return $this->updated;
     }
 
-    public function setUpdated(\DateTimeInterface $updated): self
+    public function setUpdated(?\DateTimeInterface $updated): self
     {
         $this->updated = $updated;
 
@@ -216,7 +216,7 @@ class Place
         return $this->deleted;
     }
 
-    public function setDeleted(\DateTimeInterface $deleted): self
+    public function setDeleted(?\DateTimeInterface $deleted): self
     {
         $this->deleted = $deleted;
 

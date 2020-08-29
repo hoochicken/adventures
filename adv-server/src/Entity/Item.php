@@ -92,11 +92,11 @@ class Item
     private $createdUser = '0';
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
-     * @ORM\Column(name="updated", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="updated", type="datetime", nullable=true)
      */
-    private $updated = 'CURRENT_TIMESTAMP';
+    private $updated;
 
     /**
      * @var int
@@ -106,11 +106,11 @@ class Item
     private $updatedUser = '0';
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
-     * @ORM\Column(name="deleted", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="deleted", type="datetime", nullable=true)
      */
-    private $deleted = 'CURRENT_TIMESTAMP';
+    private $deleted;
 
     /**
      * @var int
@@ -249,7 +249,7 @@ class Item
         return $this->updated;
     }
 
-    public function setUpdated(\DateTimeInterface $updated): self
+    public function setUpdated(?\DateTimeInterface $updated): self
     {
         $this->updated = $updated;
 
@@ -273,7 +273,7 @@ class Item
         return $this->deleted;
     }
 
-    public function setDeleted(\DateTimeInterface $deleted): self
+    public function setDeleted(?\DateTimeInterface $deleted): self
     {
         $this->deleted = $deleted;
 

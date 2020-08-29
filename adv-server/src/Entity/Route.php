@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Route
  *
  * @ORM\Table(name="route", uniqueConstraints={@ORM\UniqueConstraint(name="in", columns={"in", "out_direction"})})
- * @ORM\Entity(repositoryClass="App\Repository\RouteRepository")
+ * @ORM\Entity
  */
 class Route
 {
@@ -71,11 +71,11 @@ class Route
     private $createdUser = '0';
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
-     * @ORM\Column(name="updated", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="updated", type="datetime", nullable=true)
      */
-    private $updated = 'CURRENT_TIMESTAMP';
+    private $updated;
 
     /**
      * @var int
@@ -85,11 +85,11 @@ class Route
     private $updatedUser = '0';
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
-     * @ORM\Column(name="deleted", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="deleted", type="datetime", nullable=true)
      */
-    private $deleted = 'CURRENT_TIMESTAMP';
+    private $deleted;
 
     /**
      * @var int
@@ -192,7 +192,7 @@ class Route
         return $this->updated;
     }
 
-    public function setUpdated(\DateTimeInterface $updated): self
+    public function setUpdated(?\DateTimeInterface $updated): self
     {
         $this->updated = $updated;
 
@@ -216,7 +216,7 @@ class Route
         return $this->deleted;
     }
 
-    public function setDeleted(\DateTimeInterface $deleted): self
+    public function setDeleted(?\DateTimeInterface $deleted): self
     {
         $this->deleted = $deleted;
 
