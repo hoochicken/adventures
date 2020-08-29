@@ -102,6 +102,7 @@ class PlaceRepository extends ServiceEntityRepository
         $return['id'] = $place->getId();
         $return['name'] = $place->getName();
         $return['description'] = $place->getDescription();
+        $return['state'] = $place->getState();
         return $return;
     }
 
