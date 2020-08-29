@@ -1,5 +1,5 @@
-<template functional>
-    <div :class="'d-flex alert alert-' + msgtype">asd{{msgtype}}asd<slot></slot></div>
+<template>
+    <div :class="'d-flex alert alert-' + msgtype"><slot></slot></div>
 </template>
 
 <script>
@@ -8,8 +8,8 @@
         props: {
             msgtype: {
                 type: String,
-                default: 'info'
-            }
+                default: 'info',
+            },
         }
     }
 </script>
