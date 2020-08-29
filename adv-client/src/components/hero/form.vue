@@ -56,19 +56,16 @@
                     <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
                 </ul>
             </div>
-            <div class="">
-                <button v-if="item.id > 0" class="btn btn-success float-right" @click="saveItem">Update</button>
-                <button v-else class="btn btn-success float-right" @click="saveItem">Create</button>
-                <button class="btn btn-warning float-right" @click="$emit('close')">Cancel</button>
-                <button v-if="item.id > 0" class="btn btn-danger float-left" @click="$emit('delete', item.id)">Delete</button>
-            </div>
+            <button-line :itemId="item.id" @create="saveItem" @update="saveItem" @delete="$emit('delete')"></button-line>
         </form>
     </div>
 </template>
 
 <script>
+    import ButtonLine from "../global/button-line";
     export default {
         name: "hero-form",
+        components: {ButtonLine},
         props: {item: {}},
         data () {
             return {
@@ -81,8 +78,7 @@
             this.heroclass = classResponse.data;
         },
         methods: {
-            saveItem: function(e) {
-                e.preventDefault();
+            saveItem: function() {
                 if (!this.checkForm()) {
                     return false;
                 }

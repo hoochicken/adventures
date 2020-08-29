@@ -2,7 +2,7 @@
     <div>
         <form>
             <div v-if="item.id > 0" class="form-group row form-horizontal">
-                <label for="id" class="col-sm-2 col-form-label">ID</label><input id="id" class="form-control col-sm-10" v-model="item.id"/>
+                <label for="id" class="col-sm-2 col-form-label">ID</label><input id="id" readonly class="form-control col-sm-10" v-model="item.id"/>
             </div>
             <div class="form-group row form-horizontal">
                 <label for="name" class="col-sm-2 col-form-label">name</label><input id="name" class="form-control col-sm-10" v-model="item.name"/>
@@ -16,19 +16,16 @@
                     <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
                 </ul>
             </div>
-            <div class="">
-                <button v-if="item.id > 0" class="btn btn-success float-right" @click="saveItem">Update</button>
-                <button v-else class="btn btn-success float-right" @click="saveItem">Create</button>
-                <button class="btn btn-warning float-right" @click="$emit('close')">Cancel</button>
-                <button v-if="item.id > 0" class="btn btn-danger float-left" @click="$emit('delete', item.id)">Delete</button>
-            </div>
+            <button-line :itemId="item.id" @create="saveItem" @update="saveItem" @delete="$emit('delete')"></button-line>
         </form>
     </div>
 </template>
 
 <script>
+    import ButtonLine from "../global/button-line";
     export default {
         name: "place-form",
+        components: {ButtonLine},
         props: {item: {}},
         data () {
             return {
@@ -41,8 +38,7 @@
             // this.placetype = classResponse.data;
         },
         methods: {
-            saveItem: function(e) {
-                e.preventDefault();
+            saveItem: function() {
                 if (!this.checkForm()) {
                     return false;
                 }
