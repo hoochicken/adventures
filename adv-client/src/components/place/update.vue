@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Update</h1>
-        <place-form :item=item @save="updatePlace" @close="$router.push('/place/list')" @delete="deletePlace"></place-form>
+        <place-form :item=item @save="updatePlace" @cancel="$router.push('/place/list')" @delete="deletePlace"></place-form>
         <message-box>{{ error }}</message-box>
     </div>
 </template>

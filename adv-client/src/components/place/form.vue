@@ -16,7 +16,7 @@
                     <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
                 </ul>
             </div>
-            <button-line :itemId="item.id" @create="saveItem" @update="saveItem" @delete="$emit('delete')"></button-line>
+            <button-line :itemId="item.id" @create="saveItem" @cancel="$emit('cancel')" @update="saveItem" @delete="$emit('delete')"></button-line>
         </form>
     </div>
 </template>
