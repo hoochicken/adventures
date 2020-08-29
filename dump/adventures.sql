@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: hero_mysql
--- Erstellungszeit: 27. Aug 2020 um 18:16
+-- Erstellungszeit: 29. Aug 2020 um 07:17
 -- Server-Version: 8.0.21
 -- PHP-Version: 7.4.6
 
@@ -36,9 +36,9 @@ CREATE TABLE `action` (
   `state` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_user` int NOT NULL DEFAULT '0',
-  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
-  `deleted` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` datetime DEFAULT NULL,
   `deleted_user` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -47,12 +47,12 @@ CREATE TABLE `action` (
 --
 
 INSERT INTO `action` (`id`, `name`, `label`, `description`, `attributes`, `state`, `created`, `created_user`, `updated`, `updated_user`, `deleted`, `deleted_user`) VALUES
-(1, 'look', 'Look', '', '{}', 1, '2020-08-27 17:18:20', 0, '2020-08-27 17:18:20', 0, '2020-08-27 17:18:20', 0),
-(2, 'chat', 'Chat', '', '{}', 1, '2020-08-27 17:18:20', 0, '2020-08-27 17:18:20', 0, '2020-08-27 17:18:20', 0),
-(3, 'attack', 'Attack', '', '{}', 1, '2020-08-27 17:18:20', 0, '2020-08-27 17:18:20', 0, '2020-08-27 17:18:20', 0),
-(4, 'walk', 'Walk', '', '{}', 1, '2020-08-27 17:18:20', 0, '2020-08-27 17:18:20', 0, '2020-08-27 17:18:20', 0),
-(5, 'cheat', 'Cheat', '', '{}', 1, '2020-08-27 17:18:20', 0, '2020-08-27 17:18:20', 0, '2020-08-27 17:18:20', 0),
-(6, 'spell', 'Spell', '', '{}', 1, '2020-08-27 17:18:20', 0, '2020-08-27 17:18:20', 0, '2020-08-27 17:18:20', 0);
+(1, 'look', 'Look', '', '{}', 1, '2020-08-27 17:18:20', 0, NULL, 0, NULL, 0),
+(2, 'chat', 'Chat', '', '{}', 1, '2020-08-27 17:18:20', 0, NULL, 0, NULL, 0),
+(3, 'attack', 'Attack', '', '{}', 1, '2020-08-27 17:18:20', 0, NULL, 0, NULL, 0),
+(4, 'walk', 'Walk', '', '{}', 1, '2020-08-27 17:18:20', 0, NULL, 0, NULL, 0),
+(5, 'cheat', 'Cheat', '', '{}', 1, '2020-08-27 17:18:20', 0, NULL, 0, NULL, 0),
+(6, 'spell', 'Spell', '', '{}', 1, '2020-08-27 17:18:20', 0, NULL, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -79,9 +79,9 @@ CREATE TABLE `hero` (
   `state` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_user` int NOT NULL DEFAULT '0',
-  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
-  `deleted` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` datetime DEFAULT NULL,
   `deleted_user` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -90,13 +90,13 @@ CREATE TABLE `hero` (
 --
 
 INSERT INTO `hero` (`id`, `name`, `type`, `class`, `description`, `pic`, `le`, `le_current`, `ae`, `ae_current`, `inventory`, `weapon`, `at`, `pa`, `attributes`, `state`, `created`, `created_user`, `updated`, `updated_user`, `deleted`, `deleted_user`) VALUES
-(1, 'Maryana', 1, 2, '', '', 20, 16, 3, 2, '', 1, 10, 10, '{}', 1, '2020-08-27 17:18:36', 0, '2020-08-27 17:18:36', 0, '2020-08-27 17:18:36', 0),
-(2, 'Grump', 1, 2, '', '', 19, 17, 10, 8, '', 3, 15, 12, '{}', 1, '2020-08-27 17:18:36', 0, '2020-08-27 17:18:36', 0, '2020-08-27 17:18:36', 0),
-(3, 'Thomi', 1, 2, '', '', 1, 1, 1, 1, '', 1, 1, 1, '{}', 1, '2020-08-27 17:18:36', 0, '2020-08-27 17:18:36', 0, '2020-08-27 17:18:36', 0),
-(4, 'asd', 1, 1, '', '', 1, 1, 1, 1, '', 1, 1, 1, '{}', 1, '2020-08-27 17:18:36', 0, '2020-08-27 17:18:36', 0, '2020-08-27 17:18:36', 0),
-(5, 'Mandela Tippy', 1, 4, '', '', 4, 3, 1, 1, '', 1, 1, 1, '{}', 1, '2020-08-27 17:18:36', 0, '2020-08-27 17:18:36', 0, '2020-08-27 17:18:36', 0),
-(16, 'ERROR', 1, 1, '', '', 10000, 10000, 1000, 1000, '', 1, 21, 21, '{}', 1, '2020-08-27 17:18:36', 0, '2020-08-27 17:18:36', 0, '2020-08-27 17:18:36', 0),
-(17, 'Hero of The Seventh Rye', 1, 2, '', '', 1, 1, 1, 1, '', 1, 1, 1, '{}', 1, '2020-08-27 17:18:36', 0, '2020-08-27 17:18:36', 0, '2020-08-27 17:18:36', 0);
+(1, 'Maryan', 1, 2, '', '', 20, 16, 3, 2, '', 1, 10, 10, '{}', 1, '2020-08-27 17:18:36', 0, NULL, 0, NULL, 0),
+(2, 'Grump', 1, 2, '', '', 19, 17, 10, 8, '', 3, 15, 12, '{}', 1, '2020-08-27 17:18:36', 0, NULL, 0, NULL, 0),
+(3, 'Thomi', 1, 2, '', '', 1, 1, 1, 1, '', 1, 1, 1, '{}', 1, '2020-08-27 17:18:36', 0, NULL, 0, NULL, 0),
+(4, 'asd', 1, 1, '', '', 1, 1, 1, 1, '', 1, 1, 1, '{}', 1, '2020-08-27 17:18:36', 0, NULL, 0, NULL, 0),
+(5, 'Mandela Tippy', 1, 4, '', '', 4, 3, 1, 1, '', 1, 1, 1, '{}', 1, '2020-08-27 17:18:36', 0, NULL, 0, NULL, 0),
+(16, 'ERROR', 1, 1, '', '', 10000, 10000, 1000, 1000, '', 1, 21, 21, '{}', 1, '2020-08-27 17:18:36', 0, NULL, 0, NULL, 0),
+(17, 'Hero of The Seventh Rye', 1, 2, '', '', 1, 1, 1, 1, '', 1, 1, 1, '{}', 1, '2020-08-27 17:18:36', 0, NULL, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -112,9 +112,9 @@ CREATE TABLE `hero_class` (
   `state` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_user` int NOT NULL DEFAULT '0',
-  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
-  `deleted` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` datetime DEFAULT NULL,
   `deleted_user` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -123,10 +123,10 @@ CREATE TABLE `hero_class` (
 --
 
 INSERT INTO `hero_class` (`id`, `name`, `label`, `attributes`, `state`, `created`, `created_user`, `updated`, `updated_user`, `deleted`, `deleted_user`) VALUES
-(1, 'human', 'Mensch', '{}', 1, '2020-08-27 17:19:00', 0, '2020-08-27 17:19:00', 0, '2020-08-27 17:19:00', 0),
-(2, 'dwarf', 'Zwerg', '{}', 1, '2020-08-27 17:19:00', 0, '2020-08-27 17:19:00', 0, '2020-08-27 17:19:00', 0),
-(3, 'elf', 'Elf', '{}', 1, '2020-08-27 17:19:00', 0, '2020-08-27 17:19:00', 0, '2020-08-27 17:19:00', 0),
-(4, 'orc', 'Ork', '{}', 1, '2020-08-27 17:19:00', 0, '2020-08-27 17:19:00', 0, '2020-08-27 17:19:00', 0);
+(1, 'human', 'Mensch', '{}', 1, '2020-08-27 17:19:00', 0, NULL, 0, NULL, 0),
+(2, 'dwarf', 'Zwerg', '{}', 1, '2020-08-27 17:19:00', 0, NULL, 0, NULL, 0),
+(3, 'elf', 'Elf', '{}', 1, '2020-08-27 17:19:00', 0, NULL, 0, NULL, 0),
+(4, 'orc', 'Ork', '{}', 1, '2020-08-27 17:19:00', 0, NULL, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -141,9 +141,9 @@ CREATE TABLE `hero_type` (
   `state` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_user` int NOT NULL DEFAULT '0',
-  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
-  `deleted` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` datetime DEFAULT NULL,
   `deleted_user` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -152,9 +152,9 @@ CREATE TABLE `hero_type` (
 --
 
 INSERT INTO `hero_type` (`id`, `name`, `attributes`, `state`, `created`, `created_user`, `updated`, `updated_user`, `deleted`, `deleted_user`) VALUES
-(1, 'hero', '{}', 1, '2020-08-27 17:19:14', 0, '2020-08-27 17:19:14', 0, '2020-08-27 17:19:14', 0),
-(2, 'monster', '{}', 1, '2020-08-27 17:19:14', 0, '2020-08-27 17:19:14', 0, '2020-08-27 17:19:14', 0),
-(3, 'npc', '{}', 1, '2020-08-27 17:19:14', 0, '2020-08-27 17:19:14', 0, '2020-08-27 17:19:14', 0);
+(1, 'hero', '{}', 1, '2020-08-27 17:19:14', 0, NULL, 0, NULL, 0),
+(2, 'monster', '{}', 1, '2020-08-27 17:19:14', 0, NULL, 0, NULL, 0),
+(3, 'npc', '{}', 1, '2020-08-27 17:19:14', 0, NULL, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -174,9 +174,9 @@ CREATE TABLE `item` (
   `state` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_user` int NOT NULL DEFAULT '0',
-  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
-  `deleted` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` datetime DEFAULT NULL,
   `deleted_user` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -185,10 +185,10 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`id`, `name`, `decription`, `itemtype`, `pic`, `worth`, `weight`, `attributes`, `state`, `created`, `created_user`, `updated`, `updated_user`, `deleted`, `deleted_user`) VALUES
-(1, 'Schwert', 'Irgendein Schwert', 2, '', 2.3, 5.4, '{}', 1, '2020-08-27 17:20:05', 0, '2020-08-27 17:20:05', 0, '2020-08-27 17:20:05', 0),
-(2, 'Truhe', '', 3, '', 100.3, 15.2, '{}', 1, '2020-08-27 17:20:05', 0, '2020-08-27 17:20:05', 0, '2020-08-27 17:20:05', 0),
-(5, 'Bogen', '', 2, '', 10.2, 5.6, '{}', 1, '2020-08-27 17:20:05', 0, '2020-08-27 17:20:05', 0, '2020-08-27 17:20:05', 0),
-(6, 'Karfunkelstein', '', 1, '', 5.5, 3.2, '{}', 1, '2020-08-27 17:20:05', 0, '2020-08-27 17:20:05', 0, '2020-08-27 17:20:05', 0);
+(1, 'Schwert', 'Irgendein Schwert', 2, '', 2.3, 5.4, '{}', 1, '2020-08-27 17:20:05', 0, NULL, 0, NULL, 0),
+(2, 'Truhe', '', 3, '', 100.3, 15.2, '{}', 1, '2020-08-27 17:20:05', 0, NULL, 0, NULL, 0),
+(5, 'Bogen', '', 2, '', 10.2, 5.6, '{}', 1, '2020-08-27 17:20:05', 0, NULL, 0, NULL, 0),
+(6, 'Karfunkelstein', '', 1, '', 5.5, 3.2, '{}', 1, '2020-08-27 17:20:05', 0, NULL, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -203,9 +203,9 @@ CREATE TABLE `item2hero` (
   `state` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_user` int NOT NULL DEFAULT '0',
-  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
-  `deleted` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` datetime DEFAULT NULL,
   `deleted_user` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -252,9 +252,9 @@ CREATE TABLE `place` (
   `state` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_user` int NOT NULL DEFAULT '0',
-  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
-  `deleted` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` datetime DEFAULT NULL,
   `deleted_user` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -263,12 +263,12 @@ CREATE TABLE `place` (
 --
 
 INSERT INTO `place` (`id`, `name`, `description`, `type`, `attributes`, `state`, `created`, `created_user`, `updated`, `updated_user`, `deleted`, `deleted_user`) VALUES
-(1, 'Wald', '', 1, '{}', 1, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0),
-(2, 'Sanddüne', '', 1, '{}', 1, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0),
-(3, 'Steinkreis', '', 1, '{}', 1, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0),
-(4, 'Hütte des Hellsehers', '', 1, '{}', 1, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0),
-(5, 'Berghöhle', '', 1, '{}', 1, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0),
-(6, 'Einhornwiese', '', 1, '{}', 1, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0);
+(1, 'Wald', 'This ist the forest description, yess!', 1, '{}', 0, '2020-08-27 17:20:06', 0, NULL, 0, NULL, 0),
+(2, 'Sanddüne', '', 1, '{}', 1, '2020-08-27 17:20:06', 0, NULL, 0, NULL, 0),
+(3, 'Steinkreis', '', 1, '{}', 1, '2020-08-27 17:20:06', 0, NULL, 0, NULL, 0),
+(4, 'Hütte des Hellsehers', '', 1, '{}', 1, '2020-08-27 17:20:06', 0, NULL, 0, NULL, 0),
+(5, 'Berghöhle', '', 1, '{}', 1, '2020-08-27 17:20:06', 0, NULL, 0, NULL, 0),
+(6, 'Einhornwiese', '', 1, '{}', 1, '2020-08-27 17:20:06', 0, NULL, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -285,9 +285,9 @@ CREATE TABLE `route` (
   `state` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_user` int NOT NULL DEFAULT '0',
-  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime DEFAULT NULL,
   `updated_user` int NOT NULL DEFAULT '0',
-  `deleted` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` datetime DEFAULT NULL,
   `deleted_user` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -296,14 +296,14 @@ CREATE TABLE `route` (
 --
 
 INSERT INTO `route` (`id`, `out`, `in`, `out_direction`, `attributes`, `state`, `created`, `created_user`, `updated`, `updated_user`, `deleted`, `deleted_user`) VALUES
-(1, 0, 1, 2, '{}', 1, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0),
-(3, 0, 3, 2, '{}', 1, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0),
-(4, 0, 2, 1, '{}', 1, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0),
-(5, 0, 2, 3, '{}', 1, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0),
-(7, 0, 3, 4, '{}', 1, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0),
-(8, 0, 4, 5, '{}', 1, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0),
-(9, 0, 5, 6, '{}', 1, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0),
-(10, 0, 6, 5, '{}', 1, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0, '2020-08-27 17:20:06', 0);
+(1, 0, 1, 2, '{}', 1, '2020-08-27 17:20:06', 0, NULL, 0, NULL, 0),
+(3, 0, 3, 2, '{}', 1, '2020-08-27 17:20:06', 0, NULL, 0, NULL, 0),
+(4, 0, 2, 1, '{}', 1, '2020-08-27 17:20:06', 0, NULL, 0, NULL, 0),
+(5, 0, 2, 3, '{}', 1, '2020-08-27 17:20:06', 0, NULL, 0, NULL, 0),
+(7, 0, 3, 4, '{}', 1, '2020-08-27 17:20:06', 0, NULL, 0, NULL, 0),
+(8, 0, 4, 5, '{}', 1, '2020-08-27 17:20:06', 0, NULL, 0, NULL, 0),
+(9, 0, 5, 6, '{}', 1, '2020-08-27 17:20:06', 0, NULL, 0, NULL, 0),
+(10, 0, 6, 5, '{}', 1, '2020-08-27 17:20:06', 0, NULL, 0, NULL, 0);
 
 --
 -- Indizes der exportierten Tabellen
