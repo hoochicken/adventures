@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Modules\Dater;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Place;
 use App\Repository\PlaceRepository;
@@ -52,12 +53,13 @@ class PlaceController extends ApiController
         $place = new Place;
         $place->setName($request->get('name'));
         $place->setDescription($request->get('description'));
-        $place->setAttributes($request->get('attributes'));
         $place->setState($request->get('state'));
+        $place->setCreated(Dater::get());
 
         $em->persist($place);
         $em->flush();
-        return $this->respondCreated($placeRepository->transform($place));
+        $arr = $placeRepository->transform($place);
+        return $this->respondCreated($arr);
     }
 
     /**
@@ -69,7 +71,7 @@ class PlaceController extends ApiController
     public function get(int $id, PlaceRepository $placeRepository, EntityManagerInterface $em): JsonResponse
     {
         $place = $placeRepository->find($id);
-        return $this->respondCreated($placeRepository->transform($place));
+        return $this->respond($placeRepository->transform($place));
     }
 
     /**
@@ -94,10 +96,12 @@ class PlaceController extends ApiController
         $place = $placeRepository->find($id);
         $place->setName($request->get('name'));
         $place->setDescription($request->get('description'));
+        $place->setState($request->get('state'));
+        $place->setUpdated(Dater::get());
 
         $em->persist($place);
         $em->flush();
-        return $this->respondCreated($placeRepository->transform($place));
+        return $this->respond($placeRepository->transform($place));
     }
 
     /**
@@ -107,14 +111,17 @@ class PlaceController extends ApiController
      * @param EntityManagerInterface $em
      * @return JsonResponse
      */
-    public function delete(int $id, Request $request, PlaceRepository $placeRepository, EntityManagerInterface $em): JsonResponse
+    public function delete($id, Request $request, PlaceRepository $placeRepository, EntityManagerInterface $em): JsonResponse
     {
         $place = $placeRepository->find($id);
         if (null === $place) {
-            return $this->respondCreated('Place with id ' . $id . ' was not found. (Already removed?)');
+            return $this->respond('Place with id ' . $id . ' was not found. (Already removed?)');
         }
-        $em->remove($place);
+        $place->setDeleted(Dater::get());
+        $place->setState(false);
+
+        // $em->remove($place);
         $em->flush();
-        return $this->respondCreated(true);
+        return $this->respond();
     }
 }

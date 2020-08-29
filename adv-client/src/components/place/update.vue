@@ -3,14 +3,16 @@
         {{ response }}
         <h1>Update</h1>
         <place-form :item=item @save="updatePlace" @close="$router.push('/place/list')" @delete="deletePlace"></place-form>
+        <message-box v-bind:msgtype="'info'" v-if="error">{{ error }}</message-box>
     </div>
 </template>
 
 <script>
     import PlaceForm from "./form";
+    import MessageBox from "../global/message-box";
     export default {
         name: "place-update",
-        components: {PlaceForm},
+        components: {MessageBox, PlaceForm},
         data () {
             return {
                 item: {
@@ -20,7 +22,9 @@
                     description: '',
                     state: 1
                 },
-                response: {}
+                response: {},
+                error: {},
+                msgtype: 'info'
             }
         },
         async mounted () {
@@ -32,15 +36,22 @@
                 this.item = this.response.data;
             },
             async updatePlace(item) {
-                let params = JSON.stringify(item);
-                this.response = await this.axios.post('/place/update/' + item.id, params);
+                try {
+                    let params = JSON.stringify(item);
+                    this.response = await this.axios.post('/place/update/' + item.id, params);
+                } catch (error) {
+                    this.error = error.response;
+                }
             },
-            async deletePlace(id) {
+            async deletePlace() {
                 if (!confirm('Really delete this place???')) {
                     return;
                 }
-                await this.axios.post('/place/delete/' + id);
-                this.$router.push('/place/list');
+                try {
+                    await this.axios.post('/place/delete/' + this.item.id);
+                } catch (error) {
+                    this.error = error.response;
+                }
             }
         }
     }
