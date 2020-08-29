@@ -2,7 +2,7 @@
     <div>
         <h1>Create</h1>
         <place-form :item=item @save="createPlace" @close="$router.push('/place/list')"></place-form>
-        <message-box v-if="error">{{ error }}</message-box>
+        <message-box>{{ error }}</message-box>
     </div>
 </template>
 

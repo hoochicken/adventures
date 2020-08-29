@@ -1,9 +1,8 @@
 <template>
     <div>
-        {{ response }}
         <h1>Update</h1>
         <place-form :item=item @save="updatePlace" @close="$router.push('/place/list')" @delete="deletePlace"></place-form>
-        <message-box v-bind:msgtype="'info'" v-if="error">{{ error }}</message-box>
+        <message-box>{{ error }}</message-box>
     </div>
 </template>
 

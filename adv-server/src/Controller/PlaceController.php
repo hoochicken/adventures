@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Modules\Dater;
+use mysql_xdevapi\Exception;
+use phpDocumentor\Reflection\DocBlock\Tags\Example;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Place;
 use App\Repository\PlaceRepository;

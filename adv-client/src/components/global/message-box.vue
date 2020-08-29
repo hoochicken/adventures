@@ -1,5 +1,5 @@
 <template>
-    <div :class="'d-flex alert alert-' + msgtype"><slot></slot></div>
+    <div><div v-if="hasSlotData" :class="'d-flex alert alert-' + msgtype">{{ $slots.default }}<slot></slot></div></div>
 </template>
 
 <script>
@@ -10,6 +10,11 @@
                 type: String,
                 default: 'info',
             },
+        },
+        computed: {
+            hasSlotData() {
+                return this.$slots.default.text && this.$slots.default.text !== '{}';
+            }
         }
     }
 </script>
